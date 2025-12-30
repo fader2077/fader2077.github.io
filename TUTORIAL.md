@@ -6,11 +6,13 @@
 
 ## 目錄
 1. [前置準備](#前置準備)
-2. [修改網頁檔案](#修改網頁檔案)
-3. [新增與插入圖片](#新增與插入圖片)
-4. [使用 Git 推送更新](#使用-git-推送更新)
-5. [常見問題](#常見問題)
-6. [快速參考](#快速參考)
+2. [在本機 (localhost) 執行網站](#在本機-localhost-執行網站)
+3. [網站結構說明](#網站結構說明)
+4. [修改網頁檔案](#修改網頁檔案)
+5. [新增與插入圖片](#新增與插入圖片)
+6. [使用 Git 推送更新](#使用-git-推送更新)
+7. [常見問題](#常見問題)
+8. [快速參考](#快速參考)
 
 ---
 
@@ -20,6 +22,8 @@
 - **Git** - 版本控制系統（[下載](https://git-scm.com/download/win)）
 - **VS Code** - 程式碼編輯器（[下載](https://code.visualstudio.com/)）
 - **GitHub 帳號** - 用於管理倉庫（[註冊](https://github.com/signup)）
+- **Node.js** (可選) - 用於本機伺服器（[下載](https://nodejs.org/)）
+- **Python** (可選) - 用於本機伺服器（[下載](https://www.python.org/downloads/)）
 
 ### 確認環境
 在 PowerShell 或 Terminal 中輸入以下命令確認安裝：
@@ -31,6 +35,12 @@ git --version
 # 檢查 Git 設定
 git config --global user.name
 git config --global user.email
+
+# 檢查 Node.js 版本 (可選)
+node --version
+
+# 檢查 Python 版本 (可選)
+python --version
 ```
 
 ### 首次 Git 設定（如果還沒做過）
@@ -44,26 +54,200 @@ git config --global user.email "你的email@example.com"
 
 ---
 
-## 修改網頁檔案
+## 在本機 (localhost) 執行網站
 
-### 📁 專案檔案結構
+在修改網站之前，建議先在本機啟動伺服器預覽效果。以下提供多種方式：
+
+### 🚀 方式 1：使用 VS Code Live Server 擴充套件（最推薦）
+
+這是最簡單的方式，適合初學者。
+
+#### 步驟 1：安裝 Live Server 擴充套件
+```
+1. 開啟 VS Code
+2. 按 Ctrl + Shift + X 開啟擴充套件面板
+3. 搜尋 "Live Server"
+4. 找到 Ritwick Dey 開發的 "Live Server"
+5. 點擊 "Install" 安裝
+```
+
+#### 步驟 2：啟動本機伺服器
+```
+1. 用 VS Code 開啟專案資料夾
+2. 在左側檔案列表中找到 index.html
+3. 右鍵點擊 index.html
+4. 選擇 "Open with Live Server"
+5. 瀏覽器會自動開啟 http://127.0.0.1:5500
+```
+
+#### 優點
+- ✅ 自動重新整理：修改檔案後自動更新瀏覽器
+- ✅ 不需要命令列操作
+- ✅ 一鍵啟動
+
+### 🐍 方式 2：使用 Python 內建伺服器
+
+如果你已經安裝了 Python，這是最快的方式。
+
+#### 在 PowerShell 中執行：
+```powershell
+# 進入專案目錄
+cd "c:\Users\jiexi\Desktop\webme\fader2077.github.io\fader2077.github.io"
+
+# Python 3.x
+python -m http.server 8080
+
+# 或者 Python 2.x (較舊版本)
+python -m SimpleHTTPServer 8080
+```
+
+#### 開啟瀏覽器訪問：
+```
+http://localhost:8080
+```
+
+#### 停止伺服器
+按 `Ctrl + C` 停止伺服器
+
+### 📦 方式 3：使用 Node.js http-server
+
+如果你已經安裝了 Node.js。
+
+#### 安裝 http-server（只需執行一次）
+```powershell
+npm install -g http-server
+```
+
+#### 啟動伺服器
+```powershell
+# 進入專案目錄
+cd "c:\Users\jiexi\Desktop\webme\fader2077.github.io\fader2077.github.io"
+
+# 啟動伺服器
+http-server -p 8080
+
+# 或者啟用快取禁用（開發時推薦）
+http-server -p 8080 -c-1
+```
+
+#### 開啟瀏覽器訪問：
+```
+http://localhost:8080
+```
+
+### 🎯 方式 4：使用 npx serve（無需安裝）
+
+如果你有 Node.js 但不想全域安裝套件。
+
+```powershell
+# 進入專案目錄
+cd "c:\Users\jiexi\Desktop\webme\fader2077.github.io\fader2077.github.io"
+
+# 使用 npx 直接執行
+npx serve -p 8080
+```
+
+### 📋 本機伺服器比較表
+
+| 方式 | 需要安裝 | 自動重新整理 | 難度 |
+|------|----------|--------------|------|
+| VS Code Live Server | VS Code 擴充套件 | ✅ 是 | ⭐ 最簡單 |
+| Python http.server | Python | ❌ 否 | ⭐⭐ 簡單 |
+| Node.js http-server | Node.js + 套件 | ❌ 否 | ⭐⭐ 簡單 |
+| npx serve | Node.js | ❌ 否 | ⭐⭐ 簡單 |
+
+### 🔍 本機測試完整流程
+
+```powershell
+# 1. 開啟 PowerShell 或 Terminal
+
+# 2. 進入專案目錄
+cd "c:\Users\jiexi\Desktop\webme\fader2077.github.io\fader2077.github.io"
+
+# 3. 選擇以下任一方式啟動伺服器：
+
+# 方式 A: Python
+python -m http.server 8080
+
+# 方式 B: Node.js (需先安裝 http-server)
+http-server -p 8080
+
+# 方式 C: npx (需有 Node.js)
+npx serve -p 8080
+
+# 4. 開啟瀏覽器訪問
+# http://localhost:8080
+
+# 5. 測試三個分頁：
+# - http://localhost:8080/index.html (About 頁面)
+# - http://localhost:8080/publications.html (Publications 頁面)
+# - http://localhost:8080/projects.html (Projects 頁面)
+
+# 6. 修改檔案後重新整理瀏覽器查看效果
+# 按 F5 或 Ctrl + R 重新整理
+
+# 7. 完成後按 Ctrl + C 停止伺服器
+```
+
+---
+
+## 網站結構說明
+
+本網站由三個主要分頁組成：
+
+### 🗂️ 分頁結構
+
+| 分頁 | 檔案 | 說明 |
+|------|------|------|
+| **About** | `index.html` | 首頁，包含個人介紹、教育背景、研究興趣、技能等 |
+| **Publications** | `publications.html` | 論文發表頁面，點擊卡片可查看論文詳情 |
+| **Projects** | `projects.html` | 專案展示頁面，點擊卡片可查看專案詳情 |
+
+### 📁 完整專案檔案結構
 ```
 fader2077.github.io/
-├── index.html              # 主頁面（主要編輯這個）
+├── index.html              # About 主頁面
+├── publications.html       # Publications 論文頁面
+├── projects.html           # Projects 專案頁面
 ├── README.md               # 專案說明
 ├── TUTORIAL.md             # 本教學檔案
 ├── intro.md                # 原始個人資料
 └── assets/
     ├── css/
-    │   └── style.css       # 樣式表
+    │   ├── style.css       # 主要樣式表
+    │   └── pages.css       # 分頁專用樣式
     ├── js/
     │   ├── main.js         # 主要 JavaScript
+    │   ├── pages.js        # 分頁互動功能 (Modal)
     │   └── live2d-config.js # Live2D 配置
     └── img/                # 圖片資料夾
         └── (在此放置圖片)
 ```
 
-### 1️⃣ 編輯主頁面
+### 🎯 互動功能說明
+
+#### Projects 頁面
+- **卡片滑鼠懸停效果**：滑鼠移到專案卡片上會顯示「查看詳情」按鈕
+- **點擊展開詳情**：點擊卡片會彈出 Modal 視窗，顯示：
+  - 專案概述
+  - 研究目標
+  - 技術實現
+  - 研究成果
+  - 相關連結
+
+#### Publications 頁面
+- **依年份分類**：論文按發表年份分組顯示
+- **卡片滑鼠懸停效果**：滑鼠移到論文卡片上會有動畫效果
+- **點擊展開詳情**：點擊卡片會彈出 Modal 視窗，顯示：
+  - 論文作者
+  - 發表期刊/研討會
+  - 論文摘要
+  - 關鍵字
+  - 下載/引用連結
+
+---
+
+## 修改網頁檔案
 
 #### 使用 VS Code 開啟專案
 ```bash

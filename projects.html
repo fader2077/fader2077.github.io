@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>Projects | 李捷新 Chieh-Hsin Li</title>
+    <meta name="description" content="AI Research Projects - Deep Learning, Medical Image Analysis, and Multi-Task Learning">
+    <meta name="author" content="李捷新 Chieh-Hsin Li">
+    
+    <!-- Open Graph -->
+    <meta property="og:locale" content="zh_TW">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Projects | 李捷新 Chieh-Hsin Li">
+    <meta property="og:description" content="AI Research Projects - Deep Learning, Medical Image Analysis, and Multi-Task Learning">
+    <meta property="og:url" content="https://fader2077.github.io/projects.html">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Materialize CSS for card reveal -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/pages.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png">
+</head>
+
+<body>
+    <!-- Animated Background -->
+    <div class="bg-grid"></div>
+    <div class="glow-orb glow-orb-1"></div>
+    <div class="glow-orb glow-orb-2"></div>
+    <div class="glow-orb glow-orb-3"></div>
+    
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <a href="index.html" class="brand-text">JX<span class="brand-dot">.</span></a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html" class="nav-link">About</a></li>
+            <li><a href="publications.html" class="nav-link">Publications</a></li>
+            <li><a href="projects.html" class="nav-link active">Projects</a></li>
+        </ul>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+            <span class="hamburger"></span>
+        </button>
+    </nav>
+    
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
+        <ul class="mobile-nav-links">
+            <li><a href="index.html" class="mobile-nav-link">About</a></li>
+            <li><a href="publications.html" class="mobile-nav-link">Publications</a></li>
+            <li><a href="projects.html" class="mobile-nav-link active">Projects</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content page-content">
+        
+        <!-- Page Header -->
+        <section class="page-header">
+            <div class="section-header">
+                <span class="section-tag">Projects</span>
+                <h1 class="page-title-large">研究專案</h1>
+                <p class="page-subtitle">點擊卡片查看專案詳細資訊</p>
+            </div>
+        </section>
+        
+        <!-- Projects Grid -->
+        <section class="projects-section">
+            <div class="projects-grid">
+                
+                <!-- Project 1: Medical Image Analysis -->
+                <div class="project-card" onclick="openModal('modal1')">
+                    <div class="project-image">
+                        <div class="project-icon-large">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <div class="project-overlay">
+                            <span class="view-details">
+                                <i class="fas fa-search-plus"></i> 查看詳情
+                            </span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <span class="project-tag featured">Featured</span>
+                        <h3 class="project-title">醫學影像分析與多任務學習</h3>
+                        <p class="project-desc">基於 Transformer 與多任務學習機制的醫學影像分析研究</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">U-Net</span>
+                            <span class="tech-badge">MobileViT</span>
+                            <span class="tech-badge">PyTorch</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2: LLM x Smart Agriculture -->
+                <div class="project-card" onclick="openModal('modal2')">
+                    <div class="project-image">
+                        <div class="project-icon-large">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <div class="project-overlay">
+                            <span class="view-details">
+                                <i class="fas fa-search-plus"></i> 查看詳情
+                            </span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <span class="project-tag">AI Agriculture</span>
+                        <h3 class="project-title">LLM × 智慧農業專家系統</h3>
+                        <p class="project-desc">基於知識圖譜與 PEFT 的農業專家系統</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">Knowledge Graph</span>
+                            <span class="tech-badge">RAG</span>
+                            <span class="tech-badge">PEFT</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3: XAI & Security -->
+                <div class="project-card" onclick="openModal('modal3')">
+                    <div class="project-image">
+                        <div class="project-icon-large">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="project-overlay">
+                            <span class="view-details">
+                                <i class="fas fa-search-plus"></i> 查看詳情
+                            </span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <span class="project-tag">Security</span>
+                        <h3 class="project-title">AI資安與可解釋AI</h3>
+                        <p class="project-desc">可解釋性與對抗式分析研究</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">LIME</span>
+                            <span class="tech-badge">XAI</span>
+                            <span class="tech-badge">Adversarial</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 4: Computer Vision -->
+                <div class="project-card" onclick="openModal('modal4')">
+                    <div class="project-image">
+                        <div class="project-icon-large">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <div class="project-overlay">
+                            <span class="view-details">
+                                <i class="fas fa-search-plus"></i> 查看詳情
+                            </span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <span class="project-tag">CV</span>
+                        <h3 class="project-title">電腦視覺與智慧應用</h3>
+                        <p class="project-desc">YOLOv5 植物與瓶罐分類系統</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">YOLOv5</span>
+                            <span class="tech-badge">Edge Computing</span>
+                            <span class="tech-badge">GPS</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 5: Smart Nutrition -->
+                <div class="project-card" onclick="openModal('modal5')">
+                    <div class="project-image">
+                        <div class="project-icon-large">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <div class="project-overlay">
+                            <span class="view-details">
+                                <i class="fas fa-search-plus"></i> 查看詳情
+                            </span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <span class="project-tag">LLM</span>
+                        <h3 class="project-title">智慧營養管理系統</h3>
+                        <p class="project-desc">基於 LLM 與 YOLOv5 的營養分析</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">LLM</span>
+                            <span class="tech-badge">YOLOv5</span>
+                            <span class="tech-badge">NLP</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 6: Reinforcement Learning -->
+                <div class="project-card" onclick="openModal('modal6')">
+                    <div class="project-image">
+                        <div class="project-icon-large">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <div class="project-overlay">
+                            <span class="view-details">
+                                <i class="fas fa-search-plus"></i> 查看詳情
+                            </span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <span class="project-tag">RL</span>
+                        <h3 class="project-title">強化學習研究</h3>
+                        <p class="project-desc">PPO 演算法與多智能體系統</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">PPO</span>
+                            <span class="tech-badge">Multi-Agent</span>
+                            <span class="tech-badge">OpenAI Gym</span>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+        
+    </main>
+    
+    <!-- Project Modals -->
+    <!-- Modal 1 -->
+    <div id="modal1" class="project-modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal1')">&times;</span>
+            <div class="modal-header">
+                <div class="modal-icon">
+                    <i class="fas fa-heartbeat"></i>
+                </div>
+                <div class="modal-title-section">
+                    <span class="modal-tag">Featured Project</span>
+                    <h2>醫學影像分析與多任務學習</h2>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h4><i class="fas fa-info-circle"></i> 專案概述</h4>
+                    <p>基於 Transformer 與多任務學習機制的醫學影像分析研究，融合輕量型 MobileViT 模組與 U-Net 架構，實現高效能的醫學影像分割與分類任務。</p>
+                </div>
+                <div class="modal-section">
+                    <h4><i class="fas fa-bullseye"></i> 研究目標</h4>
+                    <ul class="modal-list">
+                        <li>開發輕量化的醫學影像分析模型</li>
+                        <li>實現多任務學習框架，同時處理分割與分類</li>
+                        <li>優化模型在邊緣設備上的推理效能</li>
+                        <li>提升醫學診斷的準確性與效率</li>
+                    </ul>
+                </div>
+                <div class="modal-section">
+                    <h4><i class="fas fa-cogs"></i> 技術實現</h4>
+                    <div class="tech-details">
+                        <span class="tech-detail-badge">U-Net Architecture</span>
+                        <span class="tech-detail-badge">MobileViT Backbone</span>
+                        <span class="tech-detail-badge">PyTorch Framework</span>
+                        <span class="tech-detail-badge">Multi-Task Learning</span>
+                        <span class="tech-detail-badge">Attention Mechanism</span>
+                        <span class="tech-detail-badge">Data Augmentation</span>
+                    </div>
+                </div>
+                <div class="modal-section">
+                    <h4><i class="fas fa-chart-line"></i> 研究成果</h4>
+                    <ul class="modal-list">
+                        <li>發表於國際期刊與研討會</li>
+                        <li>模型準確率提升 15% 以上</li>
+                        <li>推理速度優化 3 倍</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="modal-btn"><i class="fab fa-github"></i> View Code</a>
+                <a href="publications.html" class="modal-btn primary"><i class="fas fa-file-alt"></i> Related Papers</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal 2 -->
+    <div id="modal2" class="project-modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal2')">&times;</span>
+            <div class="modal-header">
+                <div class="modal-icon">
+                    <i class="fas fa-seedling"></i>
+                </div>
+                <div class="modal-title-section">
+                    <span class="modal-tag">AI Agriculture</span>
+                    <h2>LLM × 智慧農業專家系統</h2>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h4><i class="fas fa-info-circle"></i> 專案概述</h4>
+                    <p>基於知識圖譜與 PEFT 的農業專家系統，結合 RAG (Retrieval-Augmented Generation) 與 Fine-tuning 技術，打造智慧化的農業諮詢平台。</p>
+                </div>
+                <div class="modal-section">
+                    <h4><i class="fas fa-bullseye"></i> 研究目標</h4>
+                    <ul class="modal-list">
+                        <li>建構農業領域知識圖譜</li>
+                        <li>實現高效的 RAG 檢索增強生成</li>
+                        <li>應用 PEFT 技術進行模型微調</li>
+                        <li>整合 YOLOv5 進行病蟲害識別</li>
+                    </ul>
+                </div>
+                <div class="modal-section">
+                    <h4><i class="fas fa-cogs"></i> 技術實現</h4>
+                    <div class="tech-details">
+                        <span class="tech-detail-badge">Knowledge Graph</span>
+                        <span class="tech-detail-badge">RAG Pipeline</span>
+                        <span class="tech-detail-badge">PEFT / LoRA</span>
+                        <span class="tech-detail-badge">YOLOv5</span>
+                        <span class="tech-detail-badge">LangChain</span>
+                        <span class="tech-detail-badge">Vector Database</span>
+                    </div>
+                </div>
+                <div class="modal-section">
+                    <h4><i class="fas fa-chart-line"></i> 研究成果</h4>
+                    <ul class="modal-list">
+                        <li>發表於 ITAOI 2024 研討會</li>
+                        <li>建立超過 10,000 筆農業知識條目</li>
+                        <li>問答準確率達 92%</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="modal-btn"><i class="fab fa-github"></i> View Code</a>
+                <a href="publications.html" class="modal-btn primary"><i class="fas fa-file-alt"></i> Related Papers</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal 3 -->
+    <div id="modal3" class="project-modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal3')">&times;</span>
+            <div class="modal-header">
+                <div class="modal-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="modal-title-section">
+                    <span class="modal-tag">AI Security</span>
+                    <h2>AI資安與可解釋AI</h2>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h4><i class="fas fa-info-circle"></i> 專案概述</h4>
+                    <p>探討人工智慧模型的可解釋性與對抗式攻擊防禦，使用 LIME 等技術增強模型決策的透明度，並研究對抗樣本的生成與防禦機制。</p>
+                </div>
+                <div class="modal-section">
+                    <h4><i class="fas fa-bullseye"></i> 研究目標</h4>
+                    <ul class="modal-list">
+                        <li>提升深度學習模型的可解釋性</li>
+                        <li>研究對抗式攻擊的生成方法</li>
+                        <li>開發有效的防禦機制</li>
+                        <li>建立 AI 安全評估框架</li>
+                    </ul>
+                </div>
+                <div class="modal-section">
+                    <h4><i class="fas fa-cogs"></i> 技術實現</h4>
+                    <div class="tech-details">
+                        <span class="tech-detail-badge">LIME</span>
+                        <span class="tech-detail-badge">SHAP</span>
+                        <span class="tech-detail-badge">Adversarial Examples</span>
+                        <span class="tech-detail-badge">Grad-CAM</span>
+                        <span class="tech-detail-badge">Robustness Testing</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="modal-btn"><i class="fab fa-github"></i> View Code</a>
+                <a href="publications.html" class="modal-btn primary"><i class="fas fa-file-alt"></i> Related Papers</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal 4 -->
+    <div id="modal4" class="project-modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal4')">&times;</span>
+            <div class="modal-header">
+                <div class="modal-icon">
+                    <i class="fas fa-eye"></i>
+                </div>
+                <div class="modal-title-section">
+                    <span class="modal-tag">Computer Vision</span>
+                    <h2>電腦視覺與智慧應用</h2>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h4><i class="fas fa-info-circle"></i> 專案概述</h4>
+                    <p>開發 YOLOv5 植物與瓶罐分類系統，結合 GPS 輔助回收分析與邊緣運算技術，實現智慧化的環保回收解決方案。</p>
+                </div>
+                <div class="modal-section">
+                    <h4><i class="fas fa-bullseye"></i> 研究目標</h4>
+                    <ul class="modal-list">
+                        <li>開發即時物件偵測系統</li>
+                        <li>結合 GPS 進行地理位置分析</li>
+                        <li>實現邊緣設備上的推理部署</li>
+                        <li>建立智慧回收數據分析平台</li>
+                    </ul>
+                </div>
+                <div class="modal-section">
+                    <h4><i class="fas fa-cogs"></i> 技術實現</h4>
+                    <div class="tech-details">
+                        <span class="tech-detail-badge">YOLOv5</span>
+                        <span class="tech-detail-badge">Edge Computing</span>
+                        <span class="tech-detail-badge">GPS Integration</span>
+                        <span class="tech-detail-badge">3D Printing</span>
+                        <span class="tech-detail-badge">Raspberry Pi</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="modal-btn"><i class="fab fa-github"></i> View Code</a>
+                <a href="publications.html" class="modal-btn primary"><i class="fas fa-file-alt"></i> Related Papers</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal 5 -->
+    <div id="modal5" class="project-modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal5')">&times;</span>
+            <div class="modal-header">
+                <div class="modal-icon">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <div class="modal-title-section">
+                    <span class="modal-tag">Health AI</span>
+                    <h2>智慧營養管理系統</h2>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h4><i class="fas fa-info-circle"></i> 專案概述</h4>
+                    <p>結合大型語言模型與 YOLOv5 物件偵測技術，開發智慧營養管理系統，透過食物影像識別與營養分析，提供個人化的飲食建議。</p>
+                </div>
+                <div class="modal-section">
+                    <h4><i class="fas fa-bullseye"></i> 研究目標</h4>
+                    <ul class="modal-list">
+                        <li>開發食物影像識別模組</li>
+                        <li>建立營養成分資料庫</li>
+                        <li>整合 LLM 提供飲食建議</li>
+                        <li>設計使用者友善的介面</li>
+                    </ul>
+                </div>
+                <div class="modal-section">
+                    <h4><i class="fas fa-cogs"></i> 技術實現</h4>
+                    <div class="tech-details">
+                        <span class="tech-detail-badge">LLM</span>
+                        <span class="tech-detail-badge">YOLOv5</span>
+                        <span class="tech-detail-badge">NLP</span>
+                        <span class="tech-detail-badge">API Integration</span>
+                        <span class="tech-detail-badge">Mobile App</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="modal-btn"><i class="fab fa-github"></i> View Code</a>
+                <a href="publications.html" class="modal-btn primary"><i class="fas fa-file-alt"></i> Related Papers</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal 6 -->
+    <div id="modal6" class="project-modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modal6')">&times;</span>
+            <div class="modal-header">
+                <div class="modal-icon">
+                    <i class="fas fa-gamepad"></i>
+                </div>
+                <div class="modal-title-section">
+                    <span class="modal-tag">Reinforcement Learning</span>
+                    <h2>強化學習研究</h2>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h4><i class="fas fa-info-circle"></i> 專案概述</h4>
+                    <p>探索 PPO (Proximal Policy Optimization) 演算法與多智能體系統，研究強化學習在複雜環境中的應用，包括遊戲 AI 與自動化決策系統。</p>
+                </div>
+                <div class="modal-section">
+                    <h4><i class="fas fa-bullseye"></i> 研究目標</h4>
+                    <ul class="modal-list">
+                        <li>實現 PPO 演算法優化</li>
+                        <li>開發多智能體協作系統</li>
+                        <li>研究獎勵函數設計</li>
+                        <li>探索 Sim-to-Real 轉移</li>
+                    </ul>
+                </div>
+                <div class="modal-section">
+                    <h4><i class="fas fa-cogs"></i> 技術實現</h4>
+                    <div class="tech-details">
+                        <span class="tech-detail-badge">PPO Algorithm</span>
+                        <span class="tech-detail-badge">Multi-Agent RL</span>
+                        <span class="tech-detail-badge">OpenAI Gym</span>
+                        <span class="tech-detail-badge">Stable Baselines 3</span>
+                        <span class="tech-detail-badge">Unity ML-Agents</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="modal-btn"><i class="fab fa-github"></i> View Code</a>
+                <a href="publications.html" class="modal-btn primary"><i class="fas fa-file-alt"></i> Related Papers</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 李捷新 Chieh-Hsin Li. All rights reserved.</p>
+            <p class="footer-quote">Innovate. Research. Impact.</p>
+        </div>
+    </footer>
+    
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/pages.js"></script>
+</body>
+
+</html>
