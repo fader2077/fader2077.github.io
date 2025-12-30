@@ -1415,6 +1415,764 @@ cp "你的圖片路徑/photo.jpg" "c:\Users\jiexi\Desktop\webme\fader2077.github
 
 ---
 
+## 🔄 後續新增更新網頁指南
+
+這個章節教你如何在網站上線後，定期新增論文、更新專案、修改個人資訊。
+
+### 📝 完整更新流程
+
+每次更新網站時，遵循以下標準流程：
+
+```
+1. 📂 在 VS Code 開啟專案
+2. ✏️ 修改 HTML/CSS/JS 檔案
+3. 🧪 在本機測試（localhost）
+4. ✅ 確認修改正確
+5. 📦 Git 提交變更
+6. 🚀 推送到 GitHub
+7. ⏱️ 等待部署（1-2 分鐘）
+8. 🌐 確認線上網站更新
+```
+
+---
+
+### 1️⃣ 新增論文發表
+
+當你有新的論文發表時，按照以下步驟新增到網站：
+
+#### **步驟 1：開啟 publications.html**
+
+用 VS Code 開啟 `publications.html` 檔案。
+
+#### **步驟 2：找到要新增的年份區塊**
+
+如果是 2025 年的新論文，先檢查是否已有 2025 年區塊：
+
+```html
+<!-- 如果沒有 2025 年區塊，新增一個 -->
+<div class="year-section">
+    <h2 class="year-title">2025</h2>
+    <div class="publications-grid">
+        <!-- 論文卡片會放在這裡 -->
+    </div>
+</div>
+```
+
+#### **步驟 3：複製現有論文卡片**
+
+找到任一現有的論文卡片（例如 paper1），完整複製包含卡片和 Modal：
+
+```html
+<!-- 📄 新論文卡片 -->
+<div class="publication-card" onclick="openModal('paper8-modal')">
+    <div class="publication-header">
+        <span class="publication-year">2025</span>
+        <span class="publication-venue">CVPR</span>
+    </div>
+    <h3 class="publication-title">你的新論文標題</h3>
+    <p class="publication-authors">
+        <strong>Your Name</strong>, Co-Author Name
+    </p>
+    <div class="publication-tags">
+        <span class="tag">Computer Vision</span>
+        <span class="tag">Deep Learning</span>
+    </div>
+</div>
+
+<!-- 對應的 Modal -->
+<div id="paper8-modal" class="project-modal">
+    <div class="modal-content">
+        <button class="modal-close" onclick="closeModal('paper8-modal')">×</button>
+        
+        <h2>你的新論文標題</h2>
+        
+        <div class="modal-meta">
+            <span class="meta-item">📅 2025</span>
+            <span class="meta-item">📍 CVPR 2025</span>
+            <span class="meta-item">👥 Your Name, Co-Author</span>
+        </div>
+        
+        <div class="modal-section">
+            <h3>📝 摘要</h3>
+            <p>在此填入你的論文摘要...</p>
+        </div>
+        
+        <div class="modal-section">
+            <h3>🔑 關鍵詞</h3>
+            <div class="publication-tags">
+                <span class="tag">Computer Vision</span>
+                <span class="tag">Transformer</span>
+                <span class="tag">Medical Imaging</span>
+            </div>
+        </div>
+        
+        <div class="modal-section">
+            <h3>🔗 連結</h3>
+            <div class="modal-links">
+                <a href="你的論文PDF連結" target="_blank" class="modal-link">📄 Paper PDF</a>
+                <a href="你的GitHub連結" target="_blank" class="modal-link">💻 Code</a>
+                <a href="你的投影片連結" target="_blank" class="modal-link">📊 Slides</a>
+            </div>
+        </div>
+    </div>
+</div>
+```
+
+#### **步驟 4：修改重要欄位**
+
+⚠️ **必須修改的部分**：
+1. **Modal ID**：`paper8-modal` → 改成唯一的 ID（例如：`paper9-modal`）
+2. **onclick 事件**：`onclick="openModal('paper8-modal')` → 對應新的 ID
+3. **論文標題**：改成你的論文標題
+4. **作者列表**：用 `<strong>` 標記你的名字
+5. **年份和會議**：更新為正確資訊
+6. **摘要內容**：填入論文摘要
+7. **連結**：更新 PDF、Code、Slides 連結
+
+#### **步驟 5：測試 Modal 功能**
+
+```bash
+# 啟動本機伺服器
+python -m http.server 8080
+
+# 開啟 http://localhost:8080/publications.html
+# 點擊新論文卡片，確認 Modal 正確開啟
+```
+
+---
+
+### 2️⃣ 新增研究專案
+
+#### **步驟 1：開啟 projects.html**
+
+#### **步驟 2：複製專案卡片模板**
+
+```html
+<!-- 📦 新專案卡片 -->
+<div class="project-card" onclick="openModal('project7-modal')">
+    <div class="project-header">
+        <span class="project-status featured">Featured</span>  <!-- 可選：Featured 標籤 -->
+    </div>
+    <h3 class="project-title">新專案名稱</h3>
+    <p class="project-description">
+        專案的簡短描述，1-2 行說明專案目的和核心功能...
+    </p>
+    <div class="project-tags">
+        <span class="tag">Python</span>
+        <span class="tag">PyTorch</span>
+        <span class="tag">Computer Vision</span>
+    </div>
+</div>
+
+<!-- 對應的 Modal -->
+<div id="project7-modal" class="project-modal">
+    <div class="modal-content">
+        <button class="modal-close" onclick="closeModal('project7-modal')">×</button>
+        
+        <h2>新專案名稱</h2>
+        
+        <div class="modal-section">
+            <h3>📋 專案概述</h3>
+            <p>詳細描述專案的背景、動機和主要功能...</p>
+        </div>
+        
+        <div class="modal-section">
+            <h3>🎯 專案目標</h3>
+            <ul>
+                <li>目標 1：例如提升模型準確率</li>
+                <li>目標 2：例如優化運算效率</li>
+                <li>目標 3：例如開發友善使用介面</li>
+            </ul>
+        </div>
+        
+        <div class="modal-section">
+            <h3>🛠️ 技術棧</h3>
+            <div class="tech-stack">
+                <span class="tech-item">Python 3.9</span>
+                <span class="tech-item">PyTorch</span>
+                <span class="tech-item">FastAPI</span>
+                <span class="tech-item">Docker</span>
+            </div>
+        </div>
+        
+        <div class="modal-section">
+            <h3>📊 成果與影響</h3>
+            <ul>
+                <li>✅ 達成 95% 準確率</li>
+                <li>✅ 處理速度提升 3 倍</li>
+                <li>✅ 已被 50+ 研究機構採用</li>
+            </ul>
+        </div>
+        
+        <div class="modal-section">
+            <h3>🔗 相關連結</h3>
+            <div class="modal-links">
+                <a href="#" target="_blank" class="modal-link">🌐 Demo 網站</a>
+                <a href="#" target="_blank" class="modal-link">💻 GitHub Repository</a>
+                <a href="#" target="_blank" class="modal-link">📄 技術文件</a>
+            </div>
+        </div>
+    </div>
+</div>
+```
+
+#### **步驟 3：自訂專案內容**
+
+根據你的專案特性，可以調整 Modal 內容：
+
+**學術研究專案**：
+```html
+<div class="modal-section">
+    <h3>📊 研究成果</h3>
+    <ul>
+        <li>📄 發表於 CVPR 2024</li>
+        <li>🏆 獲得 Best Paper Award</li>
+        <li>📈 被引用 50+ 次</li>
+    </ul>
+</div>
+```
+
+**開源專案**：
+```html
+<div class="modal-section">
+    <h3>⭐ 社群影響</h3>
+    <ul>
+        <li>⭐ GitHub Stars: 500+</li>
+        <li>🍴 Forks: 100+</li>
+        <li>💬 活躍貢獻者: 20+</li>
+    </ul>
+</div>
+```
+
+**商業專案**：
+```html
+<div class="modal-section">
+    <h3>💼 商業價值</h3>
+    <ul>
+        <li>💰 為客戶節省 40% 成本</li>
+        <li>📈 提升業務效率 3 倍</li>
+        <li>👥 服務 1000+ 企業用戶</li>
+    </ul>
+</div>
+```
+
+---
+
+### 3️⃣ 更新個人資訊
+
+#### **更新教育背景**
+
+在 `index.html` 找到教育區塊，新增最新學歷：
+
+```html
+<div class="bento-grid">
+    <!-- 新增最新學歷在最前面 -->
+    <div class="bento-card education-card">
+        <div class="card-icon">
+            <i class="fas fa-graduation-cap"></i>
+        </div>
+        <h3>Stanford University</h3>
+        <p class="card-role">Postdoctoral Researcher</p>
+        <p class="card-date">2025 - Present</p>
+        <p class="card-description">
+            Research focus: Large Language Models, Computer Vision
+        </p>
+    </div>
+    
+    <!-- 原有的教育背景... -->
+</div>
+```
+
+#### **更新研究興趣**
+
+找到研究興趣區塊，新增新的研究方向：
+
+```html
+<div class="interests-grid">
+    <!-- 新增的研究興趣 -->
+    <div class="interest-item">
+        <i class="fas fa-robot"></i>
+        <span>Multimodal AI</span>
+    </div>
+    
+    <div class="interest-item">
+        <i class="fas fa-brain"></i>
+        <span>Neural Architecture Search</span>
+    </div>
+    
+    <!-- 原有的興趣... -->
+</div>
+```
+
+#### **更新技能列表**
+
+在技能區塊新增新掌握的技能：
+
+```html
+<div class="skills-section">
+    <h3>💻 技能</h3>
+    <div class="skills-grid">
+        <!-- 新技能 -->
+        <span class="skill-tag">Rust</span>
+        <span class="skill-tag">Kubernetes</span>
+        <span class="skill-tag">MLOps</span>
+        
+        <!-- 原有技能... -->
+    </div>
+</div>
+```
+
+#### **更新聯絡資訊**
+
+```html
+<div class="contact-info">
+    <div class="contact-item">
+        <i class="fas fa-envelope"></i>
+        <span>new-email@example.com</span>  <!-- 更新 Email -->
+    </div>
+    <div class="contact-item">
+        <i class="fas fa-map-marker-alt"></i>
+        <span>San Francisco, USA</span>  <!-- 更新地點 -->
+    </div>
+</div>
+```
+
+---
+
+### 4️⃣ 修改 Live2D 看板娘對話（配合更新）
+
+當網站有重大更新時，可以更新看板娘的對話內容來告知訪客。
+
+開啟 `assets/js/live2d-config.js`：
+
+```javascript
+const welcomeMessage = [
+    "歡迎來到我的個人網站！",
+    "很高興見到你呢！",
+    "🎉 網站剛更新了新論文哦！",  // 新增：告知訪客網站更新
+    "📝 快去 Publications 看看我的最新研究！"
+];
+
+// 為新頁面新增滑鼠懸停提示
+const mouseover_tips = [
+    // ... 原有的提示 ...
+    {
+        "selector": ".publication-card:first-child",  // 針對第一篇論文（最新的）
+        "texts": [
+            "這是我最新的論文！🎉", 
+            "剛發表在 CVPR 2025！",
+            "點擊看看研究詳情～"
+        ]
+    },
+    {
+        "selector": ".project-card:first-child",  // 針對第一個專案（最新的）
+        "texts": [
+            "這是我最新的專案！💻",
+            "花了好多時間開發呢～",
+            "點進去看看成果吧！"
+        ]
+    }
+];
+```
+
+---
+
+### 5️⃣ 完整更新工作流程範例
+
+讓我們走一遍完整的更新流程：
+
+#### **情境：你剛發表了一篇新論文**
+
+```bash
+# 1. 開啟專案
+cd "c:\Users\jiexi\Desktop\webme\fader2077.github.io\fader2077.github.io"
+code .
+
+# 2. 在 VS Code 中編輯 publications.html
+# - 新增論文卡片（paper8）
+# - 新增對應 Modal
+# - 填入論文資訊
+
+# 3. 更新看板娘對話（可選）
+# - 編輯 assets/js/live2d-config.js
+# - 新增歡迎訊息："剛發表新論文囉！"
+
+# 4. 本機測試
+python -m http.server 8080
+# 開啟瀏覽器測試 http://localhost:8080/publications.html
+# 點擊新論文卡片，確認 Modal 正確顯示
+
+# 5. 確認沒問題後，按 Ctrl+C 停止伺服器
+
+# 6. Git 提交
+git status  # 確認修改的檔案
+git add publications.html assets/js/live2d-config.js
+git commit -m "feat: 新增 CVPR 2025 論文
+
+- 新增論文: Multimodal Learning for Medical Image Analysis
+- 更新看板娘歡迎訊息
+- 新增論文 PDF 和 Code 連結"
+
+# 7. 推送到 GitHub
+git push origin main
+
+# 8. 等待 1-2 分鐘，訪問確認
+# https://fader2077.github.io/publications.html
+```
+
+#### **情境：同時更新多個內容**
+
+```bash
+# 1. 批次修改多個檔案
+# - publications.html: 新增 2 篇論文
+# - projects.html: 新增 1 個專案
+# - index.html: 更新個人簡介
+# - assets/img/: 新增專案截圖
+
+# 2. 本機測試所有頁面
+python -m http.server 8080
+# 測試 index.html
+# 測試 publications.html (確認 2 篇新論文)
+# 測試 projects.html (確認新專案)
+
+# 3. Git 提交（詳細說明）
+git add -A
+git commit -m "feat: 2024 Q4 網站內容大更新
+
+📄 Publications:
+- 新增 CVPR 2025 論文
+- 新增 NeurIPS 2024 論文
+
+📦 Projects:
+- 新增醫學影像分析系統專案
+- 新增專案截圖 3 張
+
+👤 About:
+- 更新個人簡介
+- 新增獲獎記錄"
+
+# 4. 推送
+git push origin main
+```
+
+---
+
+### 6️⃣ 定期更新最佳實踐
+
+建議建立定期更新習慣：
+
+#### **📅 每月更新檢查清單**
+
+```markdown
+□ 檢查是否有新論文需要新增
+□ 檢查是否有新專案可以展示
+□ 更新個人簡介（新技能、新經歷）
+□ 檢查所有連結是否有效
+□ 檢查圖片是否正常顯示
+□ 更新 CV/Resume 連結（如有）
+□ 檢查 Google Scholar 引用數更新
+□ 更新看板娘對話內容（保持新鮮感）
+```
+
+#### **🎯 每季度重大更新**
+
+```markdown
+□ 重新審視網站設計是否需要調整
+□ 檢查配色是否符合當前品味
+□ 評估是否需要新增新頁面/功能
+□ 優化圖片大小（壓縮過大的圖片）
+□ 檢查 SEO 優化（meta 標籤）
+□ 備份整個專案到本機
+□ 檢查 GitHub Pages 運作狀況
+```
+
+#### **💡 快速更新技巧**
+
+**技巧 1：使用註解標記**
+```html
+<!-- ⭐ 最新論文 - 2025/01 新增 -->
+<div class="publication-card" onclick="openModal('paper8-modal')">
+    <!-- ... -->
+</div>
+
+<!-- ✅ 已確認連結有效 - 2025/01/15 -->
+<a href="https://arxiv.org/xxx">Paper</a>
+```
+
+**技巧 2：建立更新日誌**
+
+在專案根目錄建立 `CHANGELOG.md`：
+
+```markdown
+# 更新日誌
+
+## 2025-01-15
+- 新增 CVPR 2025 論文
+- 更新看板娘對話
+- 修正 Projects 頁面連結錯誤
+
+## 2024-12-20
+- 新增醫學影像專案
+- 更新個人簡介
+- 優化圖片載入速度
+
+## 2024-12-01
+- 初始網站上線
+- 完成三頁式架構
+```
+
+**技巧 3：使用 Git 分支測試重大更新**
+
+```bash
+# 建立測試分支
+git checkout -b feature/major-update
+
+# 在分支上進行修改和測試
+# ... 修改檔案 ...
+
+# 測試沒問題後，合併回主分支
+git checkout main
+git merge feature/major-update
+git push origin main
+```
+
+---
+
+### 7️⃣ 常見更新情境快速參考
+
+| 更新情境 | 修改檔案 | 測試重點 | 預計時間 |
+|---------|---------|---------|---------|
+| 新增 1 篇論文 | `publications.html` | Modal 開啟、連結有效 | 10 分鐘 |
+| 新增 1 個專案 | `projects.html` | Modal 開啟、圖片顯示 | 15 分鐘 |
+| 更新個人簡介 | `index.html` | 文字正確、排版正常 | 5 分鐘 |
+| 更換配色主題 | `assets/css/style.css` | 全站配色協調 | 30 分鐘 |
+| 更新看板娘對話 | `assets/js/live2d-config.js` | 對話正確顯示 | 5 分鐘 |
+| 新增頭像照片 | `index.html` + `assets/img/` | 圖片大小、位置 | 10 分鐘 |
+| 批次更新內容 | 多個檔案 | 全站功能測試 | 60 分鐘+ |
+
+---
+
+### 8️⃣ 更新後驗證檢查表
+
+每次更新完成並推送後，使用此檢查表確認：
+
+```markdown
+□ 訪問 https://fader2077.github.io 確認首頁正常
+□ 點擊 Publications 連結，檢查新論文是否顯示
+□ 點擊新論文卡片，確認 Modal 正確開啟
+□ 檢查 Modal 中的所有連結是否可點擊
+□ 點擊 Projects 連結，檢查新專案
+□ 檢查所有圖片是否正常載入
+□ 測試看板娘是否正常顯示和互動
+□ 使用手機或開發者工具測試響應式設計
+□ 檢查瀏覽器 Console (F12) 是否有錯誤
+□ 分享連結給朋友測試（可選）
+```
+
+---
+
+### 9️⃣ 疑難排解：更新後的常見問題
+
+#### **問題 1：推送後網站沒有更新**
+
+**可能原因**：
+- GitHub Pages 部署延遲
+- 瀏覽器快取
+
+**解決方案**：
+```bash
+# 1. 確認推送成功
+git log --oneline -1  # 確認最新 commit
+
+# 2. 檢查 GitHub Actions
+# 訪問 https://github.com/fader2077/fader2077.github.io/actions
+# 確認部署狀態
+
+# 3. 強制重新整理瀏覽器
+# Windows: Ctrl + Shift + R
+# Mac: Cmd + Shift + R
+# 或使用無痕視窗
+
+# 4. 等待 5-10 分鐘再檢查
+```
+
+#### **問題 2：新增的 Modal 無法開啟**
+
+**檢查清單**：
+```markdown
+□ Modal ID 是否唯一（不重複）
+□ onclick 中的 ID 是否與 Modal ID 一致
+□ Modal 是否在正確的位置（通常在頁面底部）
+□ JavaScript 檔案 pages.js 是否正確載入
+□ 瀏覽器 Console 是否有錯誤訊息
+```
+
+**除錯步驟**：
+```html
+<!-- 檢查這兩處 ID 是否一致 -->
+<div class="publication-card" onclick="openModal('paper8-modal')">
+                                                    ^^^^^^^^^^^^
+<!-- 必須完全相同 -->
+<div id="paper8-modal" class="project-modal">
+         ^^^^^^^^^^^^
+```
+
+#### **問題 3：圖片無法顯示**
+
+**檢查步驟**：
+```bash
+# 1. 確認圖片檔案存在
+ls assets/img/
+
+# 2. 確認圖片路徑正確
+# 正確: assets/img/photo.jpg
+# 錯誤: /assets/img/photo.jpg (開頭不要有 /)
+# 錯誤: img/photo.jpg (缺少 assets/)
+
+# 3. 確認圖片已經推送到 GitHub
+git status  # 確認沒有 Untracked files
+
+# 4. 檢查檔案大小
+# 如果 > 10MB 可能被 GitHub 拒絕
+```
+
+---
+
+### 🎯 更新效率秘訣
+
+#### **秘訣 1：建立內容模板檔案**
+
+在專案中建立 `templates/` 資料夾：
+
+```
+templates/
+├── publication-template.html  # 論文卡片模板
+├── project-template.html      # 專案卡片模板
+└── education-template.html    # 教育背景模板
+```
+
+**publication-template.html**：
+```html
+<!-- 📄 論文模板 - 複製使用 -->
+<div class="publication-card" onclick="openModal('paperX-modal')">
+    <div class="publication-header">
+        <span class="publication-year">YEAR</span>
+        <span class="publication-venue">VENUE</span>
+    </div>
+    <h3 class="publication-title">TITLE</h3>
+    <p class="publication-authors">
+        <strong>YOUR NAME</strong>, Co-Authors
+    </p>
+    <div class="publication-tags">
+        <span class="tag">TAG1</span>
+        <span class="tag">TAG2</span>
+    </div>
+</div>
+
+<div id="paperX-modal" class="project-modal">
+    <!-- Modal 內容 -->
+</div>
+```
+
+#### **秘訣 2：使用 VS Code Snippets**
+
+創建自訂程式碼片段，快速插入常用結構。
+
+按 `Ctrl + Shift + P` → 輸入 "snippets" → 選擇 "Configure User Snippets" → 選擇 "html.json"：
+
+```json
+{
+  "Publication Card": {
+    "prefix": "pubcard",
+    "body": [
+      "<div class=\"publication-card\" onclick=\"openModal('${1:paper-id}-modal')\">",
+      "    <div class=\"publication-header\">",
+      "        <span class=\"publication-year\">${2:2025}</span>",
+      "        <span class=\"publication-venue\">${3:VENUE}</span>",
+      "    </div>",
+      "    <h3 class=\"publication-title\">${4:Title}</h3>",
+      "    <p class=\"publication-authors\">",
+      "        <strong>Your Name</strong>, ${5:Co-authors}",
+      "    </p>",
+      "    <div class=\"publication-tags\">",
+      "        <span class=\"tag\">${6:Tag1}</span>",
+      "        <span class=\"tag\">${7:Tag2}</span>",
+      "    </div>",
+      "</div>"
+    ],
+    "description": "Insert publication card"
+  }
+}
+```
+
+使用時只需輸入 `pubcard` 然後按 `Tab`，就會自動插入模板！
+
+#### **秘訣 3：批次處理圖片**
+
+使用自動化腳本批次壓縮圖片：
+
+**PowerShell 腳本**（需安裝 ImageMagick）：
+```powershell
+# compress-images.ps1
+Get-ChildItem "assets/img/*.jpg" | ForEach-Object {
+    magick $_.FullName -quality 85 -resize "1200x800>" $_.FullName
+    Write-Host "已壓縮: $($_.Name)"
+}
+```
+
+---
+
+### 📚 進階：自動化更新流程
+
+如果你經常更新網站，可以建立自動化腳本：
+
+**update-site.ps1**：
+```powershell
+# 自動化網站更新腳本
+
+Write-Host "🚀 開始網站更新流程..." -ForegroundColor Green
+
+# 1. 確認在正確目錄
+Set-Location "c:\Users\jiexi\Desktop\webme\fader2077.github.io\fader2077.github.io"
+
+# 2. 檢查變更
+Write-Host "`n📋 檢查變更的檔案..." -ForegroundColor Yellow
+git status
+
+# 3. 詢問是否繼續
+$continue = Read-Host "`n是否繼續提交? (y/n)"
+if ($continue -ne "y") {
+    Write-Host "已取消更新。" -ForegroundColor Red
+    exit
+}
+
+# 4. 提交訊息
+$message = Read-Host "`n請輸入提交訊息"
+
+# 5. Git 操作
+Write-Host "`n📦 正在提交..." -ForegroundColor Yellow
+git add -A
+git commit -m $message
+git push origin main
+
+# 6. 完成
+Write-Host "`n✅ 更新完成！" -ForegroundColor Green
+Write-Host "等待 1-2 分鐘後訪問: https://fader2077.github.io" -ForegroundColor Cyan
+```
+
+使用方式：
+```powershell
+.\update-site.ps1
+```
+
+---
+
+**🎉 現在你已經掌握完整的網站更新流程！**
+
+定期更新你的網站，讓它成為展示你研究成果和專業能力的最佳平台！
+
+---
+
 ## 使用 Git 推送更新
 
 ### 🔄 完整的推送流程
