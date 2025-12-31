@@ -1691,3 +1691,35 @@ a {
         font-size: 1rem;
     }
 }
+
+/* ================================
+   Footer Social Icons - Horizontal Layout
+================================ */
+.footer-social-links {
+    display: flex;             /* 關鍵：啟用彈性盒模型 */
+    justify-content: center;   /* 水平置中 */
+    align-items: center;       /* 垂直置中 */
+    gap: 1.5rem;              /* 圖標之間的間距 */
+    margin-top: 1.5rem;       /* 與上方文字的距離 */
+}
+
+.footer-social {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05); /* 淡淡的圓圈背景 */
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.footer-social:hover {
+    background: var(--indigo-500);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4); /* 發光特效 */
+}
