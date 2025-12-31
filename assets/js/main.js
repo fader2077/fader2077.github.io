@@ -1,10 +1,45 @@
 /* ================================
    Main JavaScript
    Dark Future Bento Grid Theme
+   Version 2.0 - Refactored
 ================================ */
 
-document.addEventListener('DOMContentLoaded', () => {
-    // Initialize all modules
+/* ================================
+   Component Loader (DRY Principle)
+================================ */
+async function loadComponent(elementId, componentPath) {
+    const element = document.getElementById(elementId);
+    if (!element) {
+        console.warn(`Element #${elementId} not found`);
+        return false;
+    }
+    
+    try {
+        const response = await fetch(componentPath);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const html = await response.text();
+        element.innerHTML = html;
+        return true;
+    } catch (error) {
+        console.error(`Failed to load component ${componentPath}:`, error);
+        return false;
+    }
+}
+
+// Load all components and initialize
+async function initComponents() {
+    // Load navbar and footer components
+    const navbarLoaded = await loadComponent('navbar-placeholder', 'components/navbar.html');
+    const footerLoaded = await loadComponent('footer-placeholder', 'components/footer.html');
+    
+    // After components are loaded, set active nav link
+    if (navbarLoaded) {
+        setActiveNavLink();
+    }
+    
+    // Initialize all modules after components are loaded
     initNavigation();
     initScrollEffects();
     initCounterAnimation();
@@ -12,75 +47,114 @@ document.addEventListener('DOMContentLoaded', () => {
     initParallax();
     initIntersectionObserver();
     initTypingEffect();
+    initGlassmorphism();
+}
+
+// Set active navigation link based on current page
+function setActiveNavLink() {
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    const pageName = currentPage.replace('.html', '') || 'index';
+    
+    // Desktop nav
+    document.querySelectorAll('.nav-link').forEach(link => {
+        const linkPage = link.getAttribute('data-page');
+        if (linkPage === pageName || (pageName === '' && linkPage === 'index')) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+    
+    // Mobile nav
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+        const linkPage = link.getAttribute('data-page');
+        if (linkPage === pageName || (pageName === '' && linkPage === 'index')) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+}
+
+// Initialize on DOM ready
+document.addEventListener('DOMContentLoaded', () => {
+    initComponents();
 });
 
 /* ================================
    Navigation
 ================================ */
 function initNavigation() {
-    const navToggle = document.querySelector('.nav-toggle');
-    const mobileNav = document.querySelector('.mobile-nav');
-    const hamburger = document.querySelector('.hamburger');
-    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-    const navLinks = document.querySelectorAll('.nav-link');
-    
-    // Toggle mobile menu
-    if (navToggle && mobileNav) {
-        navToggle.addEventListener('click', () => {
-            mobileNav.classList.toggle('active');
-            hamburger.classList.toggle('active');
+    // Use event delegation since components are loaded dynamically
+    document.addEventListener('click', (e) => {
+        // Handle nav toggle
+        if (e.target.closest('.nav-toggle')) {
+            const mobileNav = document.querySelector('.mobile-nav');
+            const hamburger = document.querySelector('.hamburger');
             
-            // Toggle hamburger animation
-            if (hamburger.classList.contains('active')) {
-                hamburger.style.background = 'transparent';
-            } else {
+            if (mobileNav && hamburger) {
+                mobileNav.classList.toggle('active');
+                hamburger.classList.toggle('active');
+                
+                if (hamburger.classList.contains('active')) {
+                    hamburger.style.background = 'transparent';
+                } else {
+                    hamburger.style.background = '';
+                }
+            }
+        }
+        
+        // Handle mobile nav link click
+        if (e.target.closest('.mobile-nav-link')) {
+            const mobileNav = document.querySelector('.mobile-nav');
+            const hamburger = document.querySelector('.hamburger');
+            
+            if (mobileNav && hamburger) {
+                mobileNav.classList.remove('active');
+                hamburger.classList.remove('active');
                 hamburger.style.background = '';
             }
-        });
-    }
-    
-    // Close mobile menu on link click
-    mobileNavLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            mobileNav.classList.remove('active');
-            hamburger.classList.remove('active');
-            hamburger.style.background = '';
-        });
-    });
-    
-    // Update active nav link on scroll
-    const sections = document.querySelectorAll('section[id]');
-    
-    window.addEventListener('scroll', () => {
-        const scrollY = window.pageYOffset;
-        
-        sections.forEach(section => {
-            const sectionHeight = section.offsetHeight;
-            const sectionTop = section.offsetTop - 100;
-            const sectionId = section.getAttribute('id');
-            
-            if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === `#${sectionId}`) {
-                        link.classList.add('active');
-                    }
-                });
-            }
-        });
+        }
     });
     
     // Navbar background on scroll
-    const navbar = document.querySelector('.navbar');
-    
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.style.background = 'rgba(2, 6, 23, 0.95)';
-            navbar.style.borderBottomColor = 'rgba(99, 102, 241, 0.3)';
-        } else {
-            navbar.style.background = 'rgba(2, 6, 23, 0.8)';
-            navbar.style.borderBottomColor = 'rgba(99, 102, 241, 0.2)';
+        const navbar = document.querySelector('.navbar');
+        if (navbar) {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+                navbar.style.background = 'rgba(2, 6, 23, 0.95)';
+                navbar.style.backdropFilter = 'blur(20px)';
+                navbar.style.borderBottomColor = 'rgba(99, 102, 241, 0.3)';
+            } else {
+                navbar.classList.remove('scrolled');
+                navbar.style.background = 'rgba(2, 6, 23, 0.8)';
+                navbar.style.backdropFilter = 'blur(10px)';
+                navbar.style.borderBottomColor = 'rgba(99, 102, 241, 0.2)';
+            }
         }
+    });
+}
+
+/* ================================
+   Glassmorphism Enhancement
+================================ */
+function initGlassmorphism() {
+    // Add mouse tracking for glassmorphism glow effect
+    document.querySelectorAll('.bento-card, .project-card, .publication-card').forEach(card => {
+        card.addEventListener('mousemove', function(e) {
+            const rect = this.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            this.style.setProperty('--mouse-x', `${x}px`);
+            this.style.setProperty('--mouse-y', `${y}px`);
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.setProperty('--mouse-x', `50%`);
+            this.style.setProperty('--mouse-y', `50%`);
+        });
     });
 }
 
@@ -88,25 +162,24 @@ function initNavigation() {
    Scroll Effects
 ================================ */
 function initScrollEffects() {
-    // Reveal elements on scroll
-    const revealElements = document.querySelectorAll('.bento-card');
+    const revealElements = document.querySelectorAll('.bento-card, .project-card, .publication-card');
     
     const revealOnScroll = () => {
-        revealElements.forEach(element => {
+        revealElements.forEach((element, index) => {
             const elementTop = element.getBoundingClientRect().top;
             const windowHeight = window.innerHeight;
             
             if (elementTop < windowHeight - 100) {
-                element.style.opacity = '1';
-                element.style.transform = 'translateY(0)';
+                // Staggered animation
+                setTimeout(() => {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }, index * 50);
             }
         });
     };
     
-    // Initial check
     revealOnScroll();
-    
-    // Check on scroll
     window.addEventListener('scroll', revealOnScroll);
 }
 
@@ -114,10 +187,12 @@ function initScrollEffects() {
    Counter Animation
 ================================ */
 function initCounterAnimation() {
-    const counters = document.querySelectorAll('.stat-number');
+    const counters = document.querySelectorAll('.stat-number, [data-count]');
     
     const animateCounter = (counter) => {
-        const target = parseInt(counter.getAttribute('data-count'));
+        const target = parseInt(counter.getAttribute('data-count') || counter.textContent);
+        if (isNaN(target)) return;
+        
         const duration = 2000;
         const step = target / (duration / 16);
         let current = 0;
@@ -135,7 +210,6 @@ function initCounterAnimation() {
         updateCounter();
     };
     
-    // Use Intersection Observer to trigger animation
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -154,24 +228,21 @@ function initCounterAnimation() {
    Smooth Scroll
 ================================ */
 function initSmoothScroll() {
-    const links = document.querySelectorAll('a[href^="#"]');
-    
-    links.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            
-            const targetId = link.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-            
-            if (targetElement) {
-                const offsetTop = targetElement.offsetTop - 80;
-                
-                window.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
-                });
-            }
-        });
+    document.addEventListener('click', (e) => {
+        const link = e.target.closest('a[href^="#"]');
+        if (!link) return;
+        
+        e.preventDefault();
+        const targetId = link.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        if (targetElement) {
+            const offsetTop = targetElement.offsetTop - 80;
+            window.scrollTo({
+                top: offsetTop,
+                behavior: 'smooth'
+            });
+        }
     });
 }
 
@@ -199,14 +270,13 @@ function initParallax() {
    Intersection Observer for Animations
 ================================ */
 function initIntersectionObserver() {
-    const animatedElements = document.querySelectorAll('.bento-card, .section-header, .skill-progress');
+    const animatedElements = document.querySelectorAll('.bento-card, .section-header, .skill-progress, .project-card, .publication-card');
     
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('animate-in');
                 
-                // Animate skill bars
                 if (entry.target.classList.contains('skill-progress')) {
                     entry.target.style.width = entry.target.style.getPropertyValue('--progress');
                 }
@@ -229,7 +299,6 @@ function initTypingEffect() {
     const typingElement = document.querySelector('.hero-description');
     
     if (typingElement && typeof Typed !== 'undefined') {
-        // Add cursor effect to greeting
         const greeting = document.querySelector('.greeting');
         if (greeting) {
             greeting.innerHTML += '<span class="typing-cursor"></span>';
@@ -254,36 +323,10 @@ function animateSkillBars() {
 }
 
 /* ================================
-   Card Hover Effects
-================================ */
-document.querySelectorAll('.bento-card').forEach(card => {
-    card.addEventListener('mouseenter', function(e) {
-        // Create glow effect
-        const rect = this.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        
-        this.style.setProperty('--mouse-x', `${x}px`);
-        this.style.setProperty('--mouse-y', `${y}px`);
-    });
-    
-    card.addEventListener('mousemove', function(e) {
-        const rect = this.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        
-        this.style.setProperty('--mouse-x', `${x}px`);
-        this.style.setProperty('--mouse-y', `${y}px`);
-    });
-});
-
-/* ================================
    Loading Animation
 ================================ */
 window.addEventListener('load', () => {
     document.body.classList.add('loaded');
-    
-    // Trigger skill bar animations after page load
     setTimeout(animateSkillBars, 1000);
 });
 
@@ -326,107 +369,7 @@ progressStyles.textContent = `
     }
 `;
 document.head.appendChild(progressStyles);
-
-// Initialize scroll progress
 initScrollProgress();
-
-/* ================================
-   Cursor Effects (Optional)
-================================ */
-function initCustomCursor() {
-    const cursor = document.createElement('div');
-    cursor.className = 'custom-cursor';
-    document.body.appendChild(cursor);
-    
-    const cursorDot = document.createElement('div');
-    cursorDot.className = 'cursor-dot';
-    document.body.appendChild(cursorDot);
-    
-    let mouseX = 0, mouseY = 0;
-    let cursorX = 0, cursorY = 0;
-    
-    document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        
-        cursorDot.style.left = `${mouseX}px`;
-        cursorDot.style.top = `${mouseY}px`;
-    });
-    
-    const animate = () => {
-        cursorX += (mouseX - cursorX) * 0.1;
-        cursorY += (mouseY - cursorY) * 0.1;
-        
-        cursor.style.left = `${cursorX}px`;
-        cursor.style.top = `${cursorY}px`;
-        
-        requestAnimationFrame(animate);
-    };
-    
-    animate();
-    
-    // Hover effects
-    document.querySelectorAll('a, button, .bento-card').forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            cursor.classList.add('cursor-hover');
-            cursorDot.classList.add('dot-hover');
-        });
-        
-        el.addEventListener('mouseleave', () => {
-            cursor.classList.remove('cursor-hover');
-            cursorDot.classList.remove('dot-hover');
-        });
-    });
-}
-
-// Custom cursor styles (optional - uncomment to enable)
-/*
-const cursorStyles = document.createElement('style');
-cursorStyles.textContent = `
-    .custom-cursor {
-        position: fixed;
-        width: 40px;
-        height: 40px;
-        border: 2px solid rgba(99, 102, 241, 0.5);
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 9999;
-        transform: translate(-50%, -50%);
-        transition: width 0.2s, height 0.2s, border-color 0.2s;
-    }
-    
-    .cursor-dot {
-        position: fixed;
-        width: 8px;
-        height: 8px;
-        background: #6366f1;
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 9999;
-        transform: translate(-50%, -50%);
-        transition: width 0.2s, height 0.2s;
-    }
-    
-    .cursor-hover {
-        width: 60px;
-        height: 60px;
-        border-color: rgba(99, 102, 241, 0.8);
-    }
-    
-    .dot-hover {
-        width: 4px;
-        height: 4px;
-    }
-    
-    @media (max-width: 768px) {
-        .custom-cursor, .cursor-dot {
-            display: none;
-        }
-    }
-`;
-document.head.appendChild(cursorStyles);
-initCustomCursor();
-*/
 
 /* ================================
    Console Easter Egg

@@ -43,29 +43,8 @@
     <div class="glow-orb glow-orb-2"></div>
     <div class="glow-orb glow-orb-3"></div>
     
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-brand">
-            <a href="index.html" class="brand-text">JX<span class="brand-dot">.</span></a>
-        </div>
-        <ul class="nav-links">
-            <li><a href="index.html" class="nav-link">About</a></li>
-            <li><a href="publications.html" class="nav-link">Publications</a></li>
-            <li><a href="projects.html" class="nav-link active">Projects</a></li>
-        </ul>
-        <button class="nav-toggle" aria-label="Toggle navigation">
-            <span class="hamburger"></span>
-        </button>
-    </nav>
-    
-    <!-- Mobile Navigation -->
-    <div class="mobile-nav">
-        <ul class="mobile-nav-links">
-            <li><a href="index.html" class="mobile-nav-link">About</a></li>
-            <li><a href="publications.html" class="mobile-nav-link">Publications</a></li>
-            <li><a href="projects.html" class="mobile-nav-link active">Projects</a></li>
-        </ul>
-    </div>
+    <!-- Navigation (loaded dynamically) -->
+    <div id="navbar-placeholder"></div>
 
     <!-- Main Content -->
     <main class="main-content page-content">
@@ -521,16 +500,14 @@
         </div>
     </div>
     
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <p>&copy; 2025 李捷新 Chieh-Hsin Li. All rights reserved.</p>
-            <p class="footer-quote">Innovate. Research. Impact.</p>
-        </div>
-    </footer>
+    <!-- Footer (loaded dynamically) -->
+    <div id="footer-placeholder"></div>
     
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <!-- 🔥 Critical Fix: live2d-config MUST load BEFORE autoload.js -->
+    <script src="assets/js/live2d-config.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script>
     <script src="assets/js/main.js"></script>
     <script src="assets/js/pages.js"></script>
 </body>

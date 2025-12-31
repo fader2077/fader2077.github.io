@@ -1420,3 +1420,171 @@ a {
 @keyframes blink {
     50% { opacity: 0; }
 }
+
+/* ================================
+   Enhanced Glassmorphism Effects
+   (Added in v2.0 refactoring)
+================================ */
+
+/* Mouse tracking glow effect for cards */
+.bento-card::after,
+.project-card::after,
+.publication-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+        400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(99, 102, 241, 0.15),
+        transparent 40%
+    );
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+    pointer-events: none;
+    border-radius: var(--radius-xl);
+}
+
+.bento-card:hover::after,
+.project-card:hover::after,
+.publication-card:hover::after {
+    opacity: 1;
+}
+
+/* Enhanced backdrop blur */
+.bento-card,
+.project-card,
+.publication-card {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* Premium hover glow */
+@keyframes pulse-glow {
+    0%, 100% {
+        box-shadow: 
+            0 0 20px rgba(99, 102, 241, 0.2),
+            0 0 40px rgba(99, 102, 241, 0.1);
+    }
+    50% {
+        box-shadow: 
+            0 0 30px rgba(99, 102, 241, 0.3),
+            0 0 60px rgba(99, 102, 241, 0.15);
+    }
+}
+
+.bento-card:hover,
+.project-card:hover,
+.publication-card:hover {
+    animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Gradient border animation */
+@keyframes border-gradient {
+    0%, 100% {
+        border-color: rgba(99, 102, 241, 0.3);
+    }
+    50% {
+        border-color: rgba(168, 85, 247, 0.4);
+    }
+}
+
+.bento-card:hover,
+.project-card:hover {
+    animation: pulse-glow 2s ease-in-out infinite, border-gradient 3s ease-in-out infinite;
+}
+
+/* Enhanced mesh gradient background */
+@keyframes mesh-shift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+.bg-grid::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(ellipse 80% 50% at 20% 40%, rgba(99, 102, 241, 0.08), transparent),
+        radial-gradient(ellipse 60% 40% at 80% 60%, rgba(168, 85, 247, 0.06), transparent);
+    background-size: 200% 200%;
+    animation: mesh-shift 15s ease-in-out infinite;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Footer styling for loaded component */
+.footer {
+    padding: var(--space-2xl) var(--space-xl);
+    background: linear-gradient(180deg, transparent, rgba(2, 6, 23, 0.9));
+    border-top: 1px solid var(--border-color);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.footer-brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.footer-brand span {
+    color: var(--indigo-500);
+}
+
+.footer-tagline {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.footer-social {
+    display: flex;
+    gap: var(--space-lg);
+    margin: var(--space-md) 0;
+}
+
+.footer-social a {
+    color: var(--text-secondary);
+    font-size: 1.25rem;
+    transition: all var(--transition-fast);
+}
+
+.footer-social a:hover {
+    color: var(--indigo-500);
+    transform: translateY(-2px);
+}
+
+.footer-copyright {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+.footer-quote {
+    color: var(--indigo-400);
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
+/* Responsive footer */
+@media (max-width: 768px) {
+    .footer-content {
+        padding: var(--space-lg);
+    }
+}

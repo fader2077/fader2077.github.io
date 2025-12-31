@@ -1,0 +1,16 @@
+# Robots.txt for fader2077.github.io
+# Allow all search engines to crawl the site
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://fader2077.github.io/sitemap.xml
+
+# Disallow crawling of assets (optional, can be removed)
+# Disallow: /assets/
+
+# Allow important static files
+Allow: /assets/css/
+Allow: /assets/js/
+Allow: /assets/img/
