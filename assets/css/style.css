@@ -1536,8 +1536,10 @@ a {
 /* Footer styling for loaded component */
 .footer {
     padding: var(--space-2xl) var(--space-xl);
-    background: linear-gradient(180deg, transparent, rgba(2, 6, 23, 0.9));
-    border-top: 1px solid var(--border-color);
+    background: linear-gradient(180deg, transparent, var(--bg-secondary));
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-top: 1px solid var(--border-light);
 }
 
 .footer-content {
@@ -1547,44 +1549,12 @@ a {
     flex-direction: column;
     align-items: center;
     gap: var(--space-md);
-}
-
-.footer-brand {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--text-primary);
-}
-
-.footer-brand span {
-    color: var(--indigo-500);
-}
-
-.footer-tagline {
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-}
-
-.footer-social {
-    display: flex;
-    gap: var(--space-lg);
-    margin: var(--space-md) 0;
-}
-
-.footer-social a {
-    color: var(--text-secondary);
-    font-size: 1.25rem;
-    transition: all var(--transition-fast);
-}
-
-.footer-social a:hover {
-    color: var(--indigo-500);
-    transform: translateY(-2px);
-}
-
-.footer-copyright {
-    color: var(--text-muted);
-    font-size: 0.8rem;
     text-align: center;
+}
+
+.footer-content p {
+    color: var(--text-secondary);
+    margin: 0.5rem 0;
 }
 
 .footer-quote {
