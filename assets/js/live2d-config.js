@@ -90,26 +90,26 @@ live2dStyle.textContent = `
         font-size: 0;
         transition: all 0.3s ease-in-out;
         transform: translateY(3px);
-        pointer-events: none;
     }
     
     #waifu:hover {
         transform: translateY(0);
     }
     
+    /* 對話氣泡框設定 */
     #waifu-tips {
         position: absolute;
-        top: -40px;
+        top: -70px; /* 修改：往上移，原本是 -40px */
         left: 50%;
         transform: translateX(-50%);
-        width: 230px;
-        min-height: 60px;
+        width: 250px;
+        min-height: 50px; /* 修改：稍微縮小高度 */
         padding: 10px 15px;
-        background: rgba(15, 23, 42, 0.95) !important;
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(99, 102, 241, 0.3) !important;
+        background: rgba(15, 23, 42, 0.85) !important; /* 修改：稍微透明一點 */
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(99, 102, 241, 0.4) !important;
         border-radius: 12px !important;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         font-size: 13px;
         line-height: 1.5;
         color: #e2e8f0 !important;
@@ -117,9 +117,17 @@ live2dStyle.textContent = `
         text-overflow: ellipsis;
         animation: shake 50s ease-in-out 5s infinite;
         z-index: 999;
+        pointer-events: none; /* 修改：讓滑鼠可以穿透對話框點擊後面 */
+        opacity: 0; /* 預設隱藏 */
+        transition: opacity 0.2s;
+    }
+    
+    #waifu-tips.waifu-tips-active {
+        opacity: 1;
         pointer-events: auto;
     }
     
+    /* 對話框下方的小箭頭 */
     #waifu-tips::before {
         content: '';
         position: absolute;
@@ -128,30 +136,32 @@ live2dStyle.textContent = `
         transform: translateX(-50%);
         border-left: 8px solid transparent;
         border-right: 8px solid transparent;
-        border-top: 8px solid rgba(15, 23, 42, 0.95);
+        border-top: 8px solid rgba(15, 23, 42, 0.85); /* 配合背景色 */
     }
     
     #waifu canvas {
         pointer-events: auto;
     }
     
+    /* 工具列設定 (側邊的小按鈕) */
     #waifu-tool {
         display: flex;
         flex-direction: column;
         position: absolute;
-        left: -35px;
+        right: -35px; /* 修改：改到右側顯示，原本是 left: -35px */
         top: 50%;
         transform: translateY(-50%);
-        background: rgba(15, 23, 42, 0.9);
-        backdrop-filter: blur(10px);
+        background: rgba(15, 23, 42, 0.8);
+        backdrop-filter: blur(5px);
         border: 1px solid rgba(99, 102, 241, 0.3);
-        border-radius: 12px;
-        padding: 8px;
+        border-radius: 0 8px 8px 0;
+        padding: 8px 4px;
         opacity: 0;
         transition: opacity 0.3s ease;
         pointer-events: auto;
     }
     
+    /* 滑鼠移上去才顯示工具列 */
     #waifu:hover #waifu-tool {
         opacity: 1;
     }
@@ -162,10 +172,10 @@ live2dStyle.textContent = `
         justify-content: center;
         width: 28px;
         height: 28px;
-        margin: 2px 0;
+        margin: 4px 0;
         cursor: pointer;
         color: #94a3b8;
-        border-radius: 8px;
+        border-radius: 6px;
         transition: all 0.2s ease;
     }
     
