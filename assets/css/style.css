@@ -803,13 +803,13 @@ a {
 
 .interest-item {
     display: flex;
-    flex-direction: column;
+    flex-direction: row; /* 關鍵：改成橫向 */
     align-items: center;
-    gap: var(--space-sm);
+    gap: var(--space-md); /* 圖標跟文字的距離 */
     padding: var(--space-md);
     background: rgba(0, 0, 0, 0.2);
     border-radius: var(--radius-md);
-    text-align: center;
+    text-align: left; /* 文字靠左 */
     transition: all var(--transition-fast);
 }
 
@@ -819,8 +819,9 @@ a {
 }
 
 .interest-item i {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     color: var(--indigo-400);
+    min-width: 24px; /* 確保圖標寬度一致 */
 }
 
 .interest-item span {
@@ -1081,10 +1082,10 @@ a {
     transform: translateY(-2px);
 }
 
-/* Tool Grid */
+/* Tool Grid - 改為 4 欄橫向排列 */
 .tool-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr); /* 4 個一排 */
     gap: var(--space-md);
 }
 
@@ -1361,6 +1362,11 @@ a {
     .code-block {
         display: none;
     }
+    
+    /* 手機版 tool-grid 變成 2 排，避免太擠 */
+    .tool-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media (max-width: 480px) {
@@ -1636,5 +1642,52 @@ a {
     
     .github-chart {
         padding: var(--space-sm);
+    }
+}
+
+/* ================================
+   Back to Top Button
+================================ */
+#back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: var(--indigo-500);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 990; /* 比 Live2D 低一點，避免擋住 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+#back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+#back-to-top:hover {
+    transform: translateY(-5px);
+    background: var(--indigo-600);
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.6);
+}
+
+/* 手機版調整 back-to-top 位置 */
+@media (max-width: 768px) {
+    #back-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+        font-size: 1rem;
     }
 }
