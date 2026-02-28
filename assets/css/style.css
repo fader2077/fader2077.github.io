@@ -763,10 +763,36 @@ a {
 
 /* Advisor Card */
 .advisor-info h4 {
-    font-size: 1.2rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #a5b4fc;
+    background: rgba(99, 102, 241, 0.12);
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    border-radius: 8px;
+    padding: 0.25rem 0.7rem;
+    margin-bottom: var(--space-sm);
+}
+
+.advisor-info h4 i {
+    font-size: 0.85rem;
+    color: #818cf8;
+}
+
+/* advisor-name inline badge (in edu-focus) */
+.advisor-name {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
     font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: var(--space-xs);
+    color: #818cf8;
+    background: rgba(99, 102, 241, 0.12);
+    border: 1px solid rgba(99, 102, 241, 0.28);
+    border-radius: 5px;
+    padding: 0.05rem 0.45rem;
+    font-size: 0.9em;
 }
 
 .advisor-info p {
