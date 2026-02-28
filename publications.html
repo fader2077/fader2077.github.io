@@ -69,7 +69,7 @@
             <!-- Publication Stats -->
             <div class="pub-stats">
                 <div class="pub-stat-item">
-                    <span class="pub-stat-number">13</span>
+                    <span class="pub-stat-number">14</span>
                     <span class="pub-stat-label">已發表論文</span>
                 </div>
                 <div class="pub-stat-item">
@@ -77,7 +77,7 @@
                     <span class="pub-stat-label">期刊</span>
                 </div>
                 <div class="pub-stat-item">
-                    <span class="pub-stat-number">10</span>
+                    <span class="pub-stat-number">11</span>
                     <span class="pub-stat-label">論文</span>
                 </div>
             </div>
@@ -188,6 +188,24 @@
                             <span class="pub-tag">Energy Management</span>
                             <span class="pub-tag">Anomaly Detection</span>
                             <span class="pub-tag">Smart Manufacturing</span>
+                        </div>
+                        <div class="pub-hover-hint"><i class="fas fa-hand-pointer"></i> 點擊查看詳情</div>
+                    </div>
+
+                    <!-- pub14: ITIPTW 2025 -->
+                    <div class="publication-card" onclick="openPubModal('pub14')">
+                        <div class="pub-card-header">
+                            <span class="pub-type conference">論文</span>
+                            <span class="pub-date">2025</span>
+                        </div>
+                        <h3 class="pub-title">A Multi-Task Deep Learning Framework for Medical Image Analysis Based on Global and Local Feature Extraction</h3>
+                        <p class="pub-authors"><strong>Jie-Xin Li</strong>, Syuan-Hao Li, Bo-Sen Tsou</p>
+                        <p class="pub-venue"><i class="fas fa-users"></i> ITIPTW 2025</p>
+                        <div class="pub-tags">
+                            <span class="pub-tag">Multi-Task Learning</span>
+                            <span class="pub-tag">MobileViT</span>
+                            <span class="pub-tag">U-Net</span>
+                            <span class="pub-tag">Medical Image</span>
                         </div>
                         <div class="pub-hover-hint"><i class="fas fa-hand-pointer"></i> 點擊查看詳情</div>
                     </div>
@@ -868,6 +886,48 @@
                         <span class="tech-detail-badge">Machine Learning</span>
                         <span class="tech-detail-badge">Smart Energy Management</span>
                         <span class="tech-detail-badge">Industry 4.0</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="modal-btn"><i class="fas fa-download"></i> Download PDF</a>
+                <a href="#" class="modal-btn"><i class="fas fa-quote-right"></i> Cite</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pub Modal 14: ITIPTW 2025 -->
+    <div id="pub14" class="project-modal pub-modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closePubModal('pub14')">&times;</span>
+            <div class="modal-header">
+                <div class="modal-icon"><i class="fas fa-brain"></i></div>
+                <div class="modal-title-section">
+                    <span class="modal-tag">Conference Paper &middot; ITIPTW 2025</span>
+                    <h2>A Multi-Task Deep Learning Framework for Medical Image Analysis Based on Global and Local Feature Extraction</h2>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section pub-meta">
+                    <div class="meta-item"><i class="fas fa-users"></i><span><strong>Authors:</strong> <strong>Jie-Xin Li</strong>, Syuan-Hao Li, Bo-Sen Tsou</span></div>
+                    <div class="meta-item"><i class="fas fa-book"></i><span><strong>Venue:</strong> ITIPTW 2025</span></div>
+                    <div class="meta-item"><i class="fas fa-calendar"></i><span><strong>Year:</strong> 2025</span></div>
+                </div>
+                <div class="modal-section">
+                    <h4><i class="fas fa-file-alt"></i> Abstract</h4>
+                    <p class="pub-abstract">本研究提出一套名為 VovUnet_Var 的全新多任務學習框架，結合 MobileViT 模組與 U-Net 架構，適用於同時進行醫學影像分割與分類任務。研究採用 MedMNIST+ 資料集（解析度 224&times;224），整合 VoVNet 的 One-Shot Aggregation (OSA) 區塊，設計具備 DownOsa 與 UpOsa 的下/上採樣模組，有效強化多尺度特徵提取能力。MobileViT 融合 CNN 的區域特徵擷取與 Transformer 的全域建模優勢，使框架在多數 MedMNIST+ 子資料集上均優於傳統基準模型，在分類準確率與分割指標上展現穩定且具競爭力的表現。未來將進一步探索參數剪枝（pruning）、知識蒸餾（knowledge distillation）等輕量化策略，並針對 RetinaMNIST 等挑戰性子集導入資料特化前處理，以提升模型在邊緣裝置與低資源環境下的部署能力。</p>
+                </div>
+                <div class="modal-section">
+                    <h4><i class="fas fa-tags"></i> Keywords</h4>
+                    <div class="tech-details">
+                        <span class="tech-detail-badge">Multi-Task Learning</span>
+                        <span class="tech-detail-badge">MobileViT</span>
+                        <span class="tech-detail-badge">VoVNet</span>
+                        <span class="tech-detail-badge">U-Net</span>
+                        <span class="tech-detail-badge">Medical Image Analysis</span>
+                        <span class="tech-detail-badge">MedMNIST+</span>
+                        <span class="tech-detail-badge">Image Segmentation</span>
+                        <span class="tech-detail-badge">Image Classification</span>
                     </div>
                 </div>
             </div>
