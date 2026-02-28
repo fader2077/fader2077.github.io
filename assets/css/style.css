@@ -1693,3 +1693,120 @@ a {
     transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4); /* 發光特效 */
 }
+
+/* ================================
+   Theme Toggle Button
+================================ */
+.theme-toggle-btn {
+    background: none;
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    transition: all var(--transition-fast);
+    flex-shrink: 0;
+}
+
+.theme-toggle-btn:hover {
+    border-color: var(--indigo-500);
+    color: var(--indigo-400);
+    background: rgba(99, 102, 241, 0.1);
+    transform: rotate(20deg);
+}
+
+/* ================================
+   Light Mode
+================================ */
+body.light-mode {
+    --bg-primary: #f8fafc;
+    --bg-secondary: #f1f5f9;
+    --bg-card: rgba(255, 255, 255, 0.88);
+    --bg-card-hover: rgba(241, 245, 249, 0.98);
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    --border-color: rgba(99, 102, 241, 0.18);
+    --border-hover: rgba(99, 102, 241, 0.42);
+    --accent-glow: rgba(99, 102, 241, 0.18);
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.10);
+}
+
+body.light-mode .bg-grid {
+    background-image:
+        linear-gradient(rgba(99, 102, 241, 0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(99, 102, 241, 0.07) 1px, transparent 1px);
+}
+
+body.light-mode .glow-orb-1 {
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.10) 0%, transparent 70%);
+}
+
+body.light-mode .glow-orb-2 {
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.07) 0%, transparent 70%);
+}
+
+body.light-mode .glow-orb-3 {
+    background: radial-gradient(circle, rgba(34, 211, 238, 0.05) 0%, transparent 70%);
+}
+
+body.light-mode .navbar {
+    background: rgba(248, 250, 252, 0.92);
+    border-bottom-color: rgba(99, 102, 241, 0.12);
+}
+
+body.light-mode .mobile-nav {
+    background: rgba(248, 250, 252, 0.97);
+    border-bottom-color: rgba(99, 102, 241, 0.12);
+}
+
+body.light-mode ::-webkit-scrollbar-track { background: #e2e8f0; }
+body.light-mode ::-webkit-scrollbar-thumb { background: #94a3b8; }
+
+body.light-mode .bento-card {
+    border-color: rgba(99, 102, 241, 0.10);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.06);
+}
+
+body.light-mode .bento-card:hover {
+    box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.08),
+        0 0 20px rgba(99, 102, 241, 0.12),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.7);
+}
+
+body.light-mode .education-item,
+body.light-mode .interest-item,
+body.light-mode .publication-item,
+body.light-mode .contact-link,
+body.light-mode .tech,
+body.light-mode .model-tag,
+body.light-mode .tool-item {
+    background: rgba(99, 102, 241, 0.05);
+}
+
+body.light-mode .skill-bar {
+    background: rgba(0, 0, 0, 0.08);
+}
+
+/* Code block 維持暗色保持可讀性 */
+body.light-mode .code-block {
+    background: #1e293b;
+}
+
+body.light-mode .footer {
+    background: linear-gradient(180deg, transparent, #e2e8f0);
+}
+
+body.light-mode #waifu-tips {
+    background: rgba(255, 255, 255, 0.92) !important;
+    color: #0f172a !important;
+    border-color: rgba(99, 102, 241, 0.2) !important;
+}

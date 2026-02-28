@@ -6,7 +6,8 @@
 /* Print Support */
 @media print {
     .bg-grid, .glow-orb, #navbar-placeholder, #footer-placeholder,
-    .cv-print-btn, #back-to-top, #live2d-widget {
+    .cv-print-btn, #back-to-top, #live2d-widget,
+    #waifu, .waifu, .waifu-toggle, #theme-toggle {
         display: none !important;
     }
     body { background: #fff !important; color: #111 !important; }
