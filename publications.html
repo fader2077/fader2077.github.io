@@ -69,15 +69,15 @@
             <!-- Publication Stats -->
             <div class="pub-stats">
                 <div class="pub-stat-item">
-                    <span class="pub-stat-number">10</span>
+                    <span class="pub-stat-number">13</span>
                     <span class="pub-stat-label">已發表論文</span>
                 </div>
                 <div class="pub-stat-item">
-                    <span class="pub-stat-number">2</span>
+                    <span class="pub-stat-number">3</span>
                     <span class="pub-stat-label">期刊</span>
                 </div>
                 <div class="pub-stat-item">
-                    <span class="pub-stat-number">8</span>
+                    <span class="pub-stat-number">10</span>
                     <span class="pub-stat-label">論文</span>
                 </div>
             </div>
@@ -114,6 +114,24 @@
                         <div class="pub-hover-hint"><i class="fas fa-hand-pointer"></i> 點擊查看詳情</div>
                     </div>
 
+                    <!-- pub11: JSTARS 2025 -->
+                    <div class="publication-card" onclick="openPubModal('pub11')">
+                        <div class="pub-card-header">
+                            <span class="pub-type journal">Journal</span>
+                            <span class="pub-date">2025</span>
+                        </div>
+                        <h3 class="pub-title">ZELPHA: A Zoom-Equivariant Lipschitz Prototype Framework for Remote Sensing Aerial Scene Classification</h3>
+                        <p class="pub-authors">Hsin-Hung Cho, Syuan-Hao Li, <strong>Jie-Xin Li</strong>, Hsin-Te Wu</p>
+                        <p class="pub-venue"><i class="fas fa-book"></i> IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing (J-STARS) &middot; DOI: 10.1109/JSTARS.2026.3669661</p>
+                        <div class="pub-tags">
+                            <span class="pub-tag">IEEE SCIE</span>
+                            <span class="pub-tag">Remote Sensing</span>
+                            <span class="pub-tag">Lipschitz</span>
+                            <span class="pub-tag">Scale Robustness</span>
+                        </div>
+                        <div class="pub-hover-hint"><i class="fas fa-hand-pointer"></i> 點擊查看詳情</div>
+                    </div>
+
                 </div>
 
                 <!-- 論文 -->
@@ -134,6 +152,42 @@
                             <span class="pub-tag">眼球病變</span>
                             <span class="pub-tag">EfficientNet</span>
                             <span class="pub-tag">醫療 AI</span>
+                        </div>
+                        <div class="pub-hover-hint"><i class="fas fa-hand-pointer"></i> 點擊查看詳情</div>
+                    </div>
+
+                    <!-- pub12: IET-ICETA 2025 -->
+                    <div class="publication-card" onclick="openPubModal('pub12')">
+                        <div class="pub-card-header">
+                            <span class="pub-type conference">論文</span>
+                            <span class="pub-date">2025</span>
+                        </div>
+                        <h3 class="pub-title">Weakly Supervised Watermark Removal Using Multi-View Visual Models and Inpainting</h3>
+                        <p class="pub-authors">Yi-Jui Huang, Chia-Cheng Liu, Syuan-Hao Li, <strong>Jie-Xin Li</strong></p>
+                        <p class="pub-venue"><i class="fas fa-users"></i> IET International Conference on Engineering Technologies and Applications (IET-ICETA 2025)</p>
+                        <div class="pub-tags">
+                            <span class="pub-tag">Watermark Removal</span>
+                            <span class="pub-tag">Image Inpainting</span>
+                            <span class="pub-tag">Weakly Supervised</span>
+                            <span class="pub-tag">Deep Learning</span>
+                        </div>
+                        <div class="pub-hover-hint"><i class="fas fa-hand-pointer"></i> 點擊查看詳情</div>
+                    </div>
+
+                    <!-- pub13: NCWIA-2025 -->
+                    <div class="publication-card" onclick="openPubModal('pub13')">
+                        <div class="pub-card-header">
+                            <span class="pub-type conference">論文</span>
+                            <span class="pub-date">2025</span>
+                        </div>
+                        <h3 class="pub-title">Data Correlation and Machine Learning Applications for Power Usage in the Steel Industry</h3>
+                        <p class="pub-authors">Yi-Jui Huang, Chih-Han Huang, Syuan-Hao Li, <strong>Jie-Xin Li</strong></p>
+                        <p class="pub-venue"><i class="fas fa-users"></i> National Conference on Web Intelligence and Applications (NCWIA 2025)</p>
+                        <div class="pub-tags">
+                            <span class="pub-tag">Machine Learning</span>
+                            <span class="pub-tag">Energy Management</span>
+                            <span class="pub-tag">Anomaly Detection</span>
+                            <span class="pub-tag">Smart Manufacturing</span>
                         </div>
                         <div class="pub-hover-hint"><i class="fas fa-hand-pointer"></i> 點擊查看詳情</div>
                     </div>
@@ -606,7 +660,7 @@
                         <span class="tech-detail-badge">Computer Vision</span>
                         <span class="tech-detail-badge">YOLOv5</span>
                         <span class="tech-detail-badge">3D Printing</span>
-                        <span class="tech-detail-badge">Recycling</span>
+                        <span class="tech-detail-badge">Green Computing</span>
                         <span class="tech-detail-badge">AI</span>
                     </div>
                 </div>
@@ -691,6 +745,129 @@
                         <span class="tech-detail-badge">眼球病變識別</span>
                         <span class="tech-detail-badge">EfficientNet-B7</span>
                         <span class="tech-detail-badge">MobileNetV3</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="modal-btn"><i class="fas fa-download"></i> Download PDF</a>
+                <a href="#" class="modal-btn"><i class="fas fa-quote-right"></i> Cite</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pub Modal 11: JSTARS 2025 -->
+    <div id="pub11" class="project-modal pub-modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closePubModal('pub11')">&times;</span>
+            <div class="modal-header">
+                <div class="modal-icon"><i class="fas fa-satellite"></i></div>
+                <div class="modal-title-section">
+                    <span class="modal-tag">IEEE J-STARS &middot; SCIE &middot; DOI: 10.1109/JSTARS.2026.3669661</span>
+                    <h2>ZELPHA: A Zoom-Equivariant Lipschitz Prototype Framework for Remote Sensing Aerial Scene Classification</h2>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section pub-meta">
+                    <div class="meta-item"><i class="fas fa-users"></i><span><strong>Authors:</strong> Hsin-Hung Cho, Syuan-Hao Li, <strong>Jie-Xin Li</strong>, Hsin-Te Wu</span></div>
+                    <div class="meta-item"><i class="fas fa-book"></i><span><strong>Venue:</strong> IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing (J-STARS)</span></div>
+                    <div class="meta-item"><i class="fas fa-link"></i><span><strong>DOI:</strong> <a href="https://doi.org/10.1109/JSTARS.2026.3669661" target="_blank" rel="noopener">10.1109/JSTARS.2026.3669661</a></span></div>
+                    <div class="meta-item"><i class="fas fa-star"></i><span><strong>Index:</strong> IEEE &middot; SCIE</span></div>
+                    <div class="meta-item"><i class="fas fa-calendar"></i><span><strong>Year:</strong> 2025</span></div>
+                </div>
+                <div class="modal-section">
+                    <h4><i class="fas fa-file-alt"></i> Abstract</h4>
+                    <p class="pub-abstract">This study introduces ZELPHA, a Zoom-Equivariant Lipschitz Prototype Framework developed to improve robustness in aerial scene classification when image scale varies. The framework combines scale-equivariant feature extraction with Lipschitz-constrained representations to control feature deformation caused by geometric scaling. A prototype-based classification strategy with margin regularization preserves class separability across different scales. Experiments on the UC Merced Land Use dataset show that ZELPHA consistently improves robustness, yielding an average gain of approximately 7.94 percentage points in robust accuracy.</p>
+                </div>
+                <div class="modal-section">
+                    <h4><i class="fas fa-tags"></i> Keywords</h4>
+                    <div class="tech-details">
+                        <span class="tech-detail-badge">Remote Sensing</span>
+                        <span class="tech-detail-badge">Scale Robustness</span>
+                        <span class="tech-detail-badge">Lipschitz Stability</span>
+                        <span class="tech-detail-badge">Zoom-Equivariant</span>
+                        <span class="tech-detail-badge">Aerial Scene Classification</span>
+                        <span class="tech-detail-badge">Prototype Learning</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="https://doi.org/10.1109/JSTARS.2026.3669661" target="_blank" rel="noopener" class="modal-btn"><i class="fas fa-external-link-alt"></i> IEEE Xplore</a>
+                <a href="#" class="modal-btn"><i class="fas fa-quote-right"></i> Cite</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pub Modal 12: IET-ICETA 2025 -->
+    <div id="pub12" class="project-modal pub-modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closePubModal('pub12')">&times;</span>
+            <div class="modal-header">
+                <div class="modal-icon"><i class="fas fa-users"></i></div>
+                <div class="modal-title-section">
+                    <span class="modal-tag">Conference Paper &middot; IET-ICETA 2025</span>
+                    <h2>Weakly Supervised Watermark Removal Using Multi-View Visual Models and Inpainting</h2>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section pub-meta">
+                    <div class="meta-item"><i class="fas fa-users"></i><span><strong>Authors:</strong> Yi-Jui Huang, Chia-Cheng Liu, Syuan-Hao Li, <strong>Jie-Xin Li</strong></span></div>
+                    <div class="meta-item"><i class="fas fa-university"></i><span><strong>Affiliation (4):</strong> Institute of Smart Industry and Green Energy, National Yang Ming Chiao Tung University</span></div>
+                    <div class="meta-item"><i class="fas fa-book"></i><span><strong>Venue:</strong> 2025 IET International Conference on Engineering Technologies and Applications (IET-ICETA)</span></div>
+                    <div class="meta-item"><i class="fas fa-calendar"></i><span><strong>Year:</strong> 2025</span></div>
+                </div>
+                <div class="modal-section">
+                    <h4><i class="fas fa-file-alt"></i> Abstract</h4>
+                    <p class="pub-abstract">This study proposes an integrated approach that combines weakly supervised learning with advanced image inpainting techniques, aiming to achieve precise watermark detection and removal without relying on complex mask annotations. By applying diverse preprocessing strategies, the original images are transformed into multiple visual representations and processed through deep learning models. An ensemble voting mechanism enhances the stability and accuracy of watermark detection. Multi-model feature response maps are fused to determine restoration areas, which are then processed by an inpainting model for masking and visual reconstruction.</p>
+                </div>
+                <div class="modal-section">
+                    <h4><i class="fas fa-tags"></i> Keywords</h4>
+                    <div class="tech-details">
+                        <span class="tech-detail-badge">Deep Learning</span>
+                        <span class="tech-detail-badge">Image Inpainting</span>
+                        <span class="tech-detail-badge">Watermark Removal</span>
+                        <span class="tech-detail-badge">Weakly Supervised Learning</span>
+                        <span class="tech-detail-badge">Multi-View Learning</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="modal-btn"><i class="fas fa-download"></i> Download PDF</a>
+                <a href="#" class="modal-btn"><i class="fas fa-quote-right"></i> Cite</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pub Modal 13: NCWIA-2025 -->
+    <div id="pub13" class="project-modal pub-modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closePubModal('pub13')">&times;</span>
+            <div class="modal-header">
+                <div class="modal-icon"><i class="fas fa-industry"></i></div>
+                <div class="modal-title-section">
+                    <span class="modal-tag">Conference Paper &middot; NCWIA 2025</span>
+                    <h2>Data Correlation and Machine Learning Applications for Power Usage in the Steel Industry</h2>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section pub-meta">
+                    <div class="meta-item"><i class="fas fa-users"></i><span><strong>Authors:</strong> Yi-Jui Huang, Chih-Han Huang, Syuan-Hao Li, <strong>Jie-Xin Li</strong></span></div>
+                    <div class="meta-item"><i class="fas fa-university"></i><span><strong>Affiliation (4):</strong> Dept. of Computer Science and Information Engineering, National Taitung University</span></div>
+                    <div class="meta-item"><i class="fas fa-book"></i><span><strong>Venue:</strong> National Conference on Web Intelligence and Applications (NCWIA 2025)</span></div>
+                    <div class="meta-item"><i class="fas fa-calendar"></i><span><strong>Year:</strong> 2025</span></div>
+                </div>
+                <div class="modal-section">
+                    <h4><i class="fas fa-file-alt"></i> Abstract</h4>
+                    <p class="pub-abstract">This study applies various data analysis and machine learning techniques to examine electricity consumption data from the steel industry, exploring relationships between different load types and key features. By integrating supervised and unsupervised models, the study achieves accurate load classification and anomaly detection, enhancing the intelligence and safety of energy management. Results indicate that EfficientNet-based models excel in light load scenarios, while medium and heavy loads present more complex distributions. Anomaly analysis reveals higher frequencies during high-load periods, underscoring real-time monitoring needs.</p>
+                </div>
+                <div class="modal-section">
+                    <h4><i class="fas fa-tags"></i> Keywords</h4>
+                    <div class="tech-details">
+                        <span class="tech-detail-badge">Anomaly Detection</span>
+                        <span class="tech-detail-badge">Energy Consumption</span>
+                        <span class="tech-detail-badge">Feature Correlation</span>
+                        <span class="tech-detail-badge">Machine Learning</span>
+                        <span class="tech-detail-badge">Smart Energy Management</span>
+                        <span class="tech-detail-badge">Industry 4.0</span>
                     </div>
                 </div>
             </div>
