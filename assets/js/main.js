@@ -368,27 +368,6 @@ function initScrollProgress() {
     });
 }
 
-// Add scroll progress styles
-const progressStyles = document.createElement('style');
-progressStyles.textContent = `
-    .scroll-progress {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 3px;
-        z-index: 9999;
-        background: rgba(15, 23, 42, 0.5);
-    }
-    
-    .scroll-progress-bar {
-        height: 100%;
-        width: 0%;
-        background: linear-gradient(90deg, #6366f1, #a855f7);
-        transition: width 0.1s ease-out;
-    }
-`;
-document.head.appendChild(progressStyles);
 initScrollProgress();
 
 /* ================================

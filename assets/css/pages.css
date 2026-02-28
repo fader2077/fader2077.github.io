@@ -680,3 +680,109 @@
         padding: 1.5rem;
     }
 }
+
+/* ========================================
+   Publication Filter Bar
+   ======================================== */
+
+.pub-filter-bar {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    padding: 0 2rem 1.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.pub-filter-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 1.1rem;
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    background: rgba(30, 41, 59, 0.5);
+    color: #94a3b8;
+    border-radius: 30px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    font-family: 'Inter', sans-serif;
+}
+
+.pub-filter-btn:hover {
+    border-color: rgba(99, 102, 241, 0.5);
+    color: #e2e8f0;
+    background: rgba(99, 102, 241, 0.1);
+}
+
+.pub-filter-btn.active {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.3), rgba(168, 85, 247, 0.2));
+    border-color: rgba(99, 102, 241, 0.6);
+    color: #a5b4fc;
+    font-weight: 600;
+}
+
+.pub-filter-empty {
+    text-align: center;
+    color: #64748b;
+    padding: 3rem 0;
+    font-size: 0.95rem;
+    display: none;
+}
+
+/* Filter hide/show */
+.publication-card.pub-hidden {
+    display: none;
+}
+
+/* ========================================
+   Fade-in-up Scroll Animation
+   ======================================== */
+
+.publication-card.pub-filterable,
+.pub-year-section {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.publication-card.pub-filterable.pub-revealed,
+.pub-year-section.pub-revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Stagger delay via nth-child */
+.pub-filterable:nth-child(1)  { transition-delay: 0.00s; }
+.pub-filterable:nth-child(2)  { transition-delay: 0.06s; }
+.pub-filterable:nth-child(3)  { transition-delay: 0.12s; }
+.pub-filterable:nth-child(4)  { transition-delay: 0.18s; }
+.pub-filterable:nth-child(5)  { transition-delay: 0.24s; }
+.pub-filterable:nth-child(6)  { transition-delay: 0.30s; }
+.pub-filterable:nth-child(n+7) { transition-delay: 0.36s; }
+
+/* ========================================
+   Scroll Progress Bar
+   ======================================== */
+
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    z-index: 9999;
+    background: transparent;
+    pointer-events: none;
+}
+
+.scroll-progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #6366f1, #a855f7, #ec4899);
+    transition: width 0.08s linear;
+    box-shadow: 0 0 8px rgba(99, 102, 241, 0.6);
+}

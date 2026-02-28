@@ -73,20 +73,24 @@ document.addEventListener('DOMContentLoaded', function() {
             card.style.transform = 'translateY(0)';
         }, 100 + index * 100);
     });
-    
-    // Animate publication cards
-    const pubCards = document.querySelectorAll('.publication-card');
-    pubCards.forEach((card, index) => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateX(-20px)';
-        
-        setTimeout(() => {
-            card.style.transition = 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
-            card.style.opacity = '1';
-            card.style.transform = 'translateX(0)';
-        }, 100 + index * 80);
+
+    // ── Fade-in-up via IntersectionObserver for publication cards ──
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('pub-revealed');
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+
+    document.querySelectorAll('.pub-filterable, .pub-year-section').forEach(el => {
+        revealObserver.observe(el);
     });
-    
+
+    // ── Publication Filter ──
+    initPubFilter();
+
     // Animate stats
     const statNumbers = document.querySelectorAll('.pub-stat-number');
     statNumbers.forEach(stat => {
@@ -170,3 +174,46 @@ style.textContent = `
 document.head.appendChild(style);
 
 console.log('Pages.js loaded successfully');
+
+/* ========================================
+   Publication Filter
+   ======================================== */
+function initPubFilter() {
+    const filterBtns = document.querySelectorAll('.pub-filter-btn');
+    if (!filterBtns.length) return;
+
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Update active button
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const filter = btn.dataset.filter;
+            const cards = document.querySelectorAll('.pub-filterable');
+            const yearSections = document.querySelectorAll('.pub-year-section');
+
+            cards.forEach(card => {
+                const matchType = card.dataset.type === filter;
+                const matchYear = card.dataset.year === filter;
+                const show = filter === 'all' || matchType || matchYear;
+
+                if (show) {
+                    card.classList.remove('pub-hidden');
+                    // Re-trigger reveal animation
+                    card.classList.remove('pub-revealed');
+                    requestAnimationFrame(() => {
+                        requestAnimationFrame(() => card.classList.add('pub-revealed'));
+                    });
+                } else {
+                    card.classList.add('pub-hidden');
+                }
+            });
+
+            // Show / hide year-section headings when all cards inside are hidden
+            yearSections.forEach(section => {
+                const visibleCards = section.querySelectorAll('.pub-filterable:not(.pub-hidden)');
+                section.style.display = visibleCards.length === 0 ? 'none' : '';
+            });
+        });
+    });
+}

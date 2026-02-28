@@ -83,6 +83,15 @@
             </div>
         </section>
         
+        <!-- Filter Tabs -->
+        <div class="pub-filter-bar">
+            <button class="pub-filter-btn active" data-filter="all"><i class="fas fa-layer-group"></i> 全部</button>
+            <button class="pub-filter-btn" data-filter="journal"><i class="fas fa-book"></i> Journal</button>
+            <button class="pub-filter-btn" data-filter="conference"><i class="fas fa-users"></i> 論文</button>
+            <button class="pub-filter-btn" data-filter="2025"><i class="fas fa-calendar"></i> 2025</button>
+            <button class="pub-filter-btn" data-filter="2024"><i class="fas fa-calendar"></i> 2024</button>
+        </div>
+
         <!-- Publications List -->
         <section class="publications-section">
 
@@ -96,8 +105,27 @@
                 <div class="pub-category-label"><i class="fas fa-book"></i> Journal</div>
                 <div class="publications-list">
 
+
+
+                    <!-- pub11: JSTARS 2025 -->
+                    <div class="publication-card pub-filterable" data-type="journal" data-year="2025" onclick="openPubModal('pub11')">
+                        <div class="pub-card-header">
+                            <span class="pub-type journal">Journal</span>
+                            <span class="pub-date">2025</span>
+                        </div>
+                        <h3 class="pub-title">ZELPHA: A Zoom-Equivariant Lipschitz Prototype Framework for Remote Sensing Aerial Scene Classification</h3>
+                        <p class="pub-authors">Hsin-Hung Cho, Syuan-Hao Li, <strong>Jie-Xin Li</strong>, Hsin-Te Wu</p>
+                        <p class="pub-venue"><i class="fas fa-book"></i> IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing (J-STARS) &middot; DOI: 10.1109/JSTARS.2026.3669661</p>
+                        <div class="pub-tags">
+                            <span class="pub-tag">IEEE SCIE</span>
+                            <span class="pub-tag">Remote Sensing</span>
+                            <span class="pub-tag">Lipschitz</span>
+                            <span class="pub-tag">Scale Robustness</span>
+                        </div>
+                        <div class="pub-hover-hint"><i class="fas fa-hand-pointer"></i> 點擊查看詳情</div>
+                    </div>
                     <!-- pub9: JIC 2025 -->
-                    <div class="publication-card" onclick="openPubModal('pub9')">
+                    <div class="publication-card pub-filterable" data-type="journal" data-year="2025" onclick="openPubModal('pub9')">
                         <div class="pub-card-header">
                             <span class="pub-type journal">Journal</span>
                             <span class="pub-date">2025</span>
@@ -114,24 +142,6 @@
                         <div class="pub-hover-hint"><i class="fas fa-hand-pointer"></i> 點擊查看詳情</div>
                     </div>
 
-                    <!-- pub11: JSTARS 2025 -->
-                    <div class="publication-card" onclick="openPubModal('pub11')">
-                        <div class="pub-card-header">
-                            <span class="pub-type journal">Journal</span>
-                            <span class="pub-date">2025</span>
-                        </div>
-                        <h3 class="pub-title">ZELPHA: A Zoom-Equivariant Lipschitz Prototype Framework for Remote Sensing Aerial Scene Classification</h3>
-                        <p class="pub-authors">Hsin-Hung Cho, Syuan-Hao Li, <strong>Jie-Xin Li</strong>, Hsin-Te Wu</p>
-                        <p class="pub-venue"><i class="fas fa-book"></i> IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing (J-STARS) &middot; DOI: 10.1109/JSTARS.2026.3669661</p>
-                        <div class="pub-tags">
-                            <span class="pub-tag">IEEE SCIE</span>
-                            <span class="pub-tag">Remote Sensing</span>
-                            <span class="pub-tag">Lipschitz</span>
-                            <span class="pub-tag">Scale Robustness</span>
-                        </div>
-                        <div class="pub-hover-hint"><i class="fas fa-hand-pointer"></i> 點擊查看詳情</div>
-                    </div>
-
                 </div>
 
                 <!-- 論文 -->
@@ -139,7 +149,7 @@
                 <div class="publications-list">
 
                     <!-- pub10: IS01-8 -->
-                    <div class="publication-card" onclick="openPubModal('pub10')">
+                    <div class="publication-card pub-filterable" data-type="conference" data-year="2025" onclick="openPubModal('pub10')">
                         <div class="pub-card-header">
                             <span class="pub-type conference">論文</span>
                             <span class="pub-date">2025</span>
@@ -157,7 +167,7 @@
                     </div>
 
                     <!-- pub12: IET-ICETA 2025 -->
-                    <div class="publication-card" onclick="openPubModal('pub12')">
+                    <div class="publication-card pub-filterable" data-type="conference" data-year="2025" onclick="openPubModal('pub12')">
                         <div class="pub-card-header">
                             <span class="pub-type conference">論文</span>
                             <span class="pub-date">2025</span>
@@ -175,7 +185,7 @@
                     </div>
 
                     <!-- pub13: NCWIA-2025 -->
-                    <div class="publication-card" onclick="openPubModal('pub13')">
+                    <div class="publication-card pub-filterable" data-type="conference" data-year="2025" onclick="openPubModal('pub13')">
                         <div class="pub-card-header">
                             <span class="pub-type conference">論文</span>
                             <span class="pub-date">2025</span>
@@ -193,7 +203,7 @@
                     </div>
 
                     <!-- pub14: ITIPTW 2025 -->
-                    <div class="publication-card" onclick="openPubModal('pub14')">
+                    <div class="publication-card pub-filterable" data-type="conference" data-year="2025" onclick="openPubModal('pub14')">
                         <div class="pub-card-header">
                             <span class="pub-type conference">論文</span>
                             <span class="pub-date">2025</span>
@@ -224,7 +234,7 @@
                 <div class="publications-list">
 
                     <!-- pub1: JOEUC SSCI -->
-                    <div class="publication-card" onclick="openPubModal('pub1')">
+                    <div class="publication-card pub-filterable" data-type="journal" data-year="2024" onclick="openPubModal('pub1')">
                         <div class="pub-card-header">
                             <span class="pub-type journal">Journal</span>
                             <span class="pub-date">2024</span>
@@ -247,7 +257,7 @@
                 <div class="publications-list">
 
                     <!-- pub2: IET-ICETA -->
-                    <div class="publication-card" onclick="openPubModal('pub2')">
+                    <div class="publication-card pub-filterable" data-type="conference" data-year="2024" onclick="openPubModal('pub2')">
                         <div class="pub-card-header">
                             <span class="pub-type conference">論文</span>
                             <span class="pub-date">2024</span>
@@ -265,7 +275,7 @@
                     </div>
 
                     <!-- pub3: ACM MLPR -->
-                    <div class="publication-card" onclick="openPubModal('pub3')">
+                    <div class="publication-card pub-filterable" data-type="conference" data-year="2024" onclick="openPubModal('pub3')">
                         <div class="pub-card-header">
                             <span class="pub-type conference">論文</span>
                             <span class="pub-date">2024</span>
@@ -282,7 +292,7 @@
                     </div>
 
                     <!-- pub4: TANET -->
-                    <div class="publication-card" onclick="openPubModal('pub4')">
+                    <div class="publication-card pub-filterable" data-type="conference" data-year="2024" onclick="openPubModal('pub4')">
                         <div class="pub-card-header">
                             <span class="pub-type conference">論文</span>
                             <span class="pub-date">2024</span>
@@ -299,7 +309,7 @@
                     </div>
 
                     <!-- pub5: ITAOI -->
-                    <div class="publication-card" onclick="openPubModal('pub5')">
+                    <div class="publication-card pub-filterable" data-type="conference" data-year="2024" onclick="openPubModal('pub5')">
                         <div class="pub-card-header">
                             <span class="pub-type conference">論文</span>
                             <span class="pub-date">2024</span>
@@ -316,7 +326,7 @@
                     </div>
 
                     <!-- pub6: TWSC2 Nutrition -->
-                    <div class="publication-card" onclick="openPubModal('pub6')">
+                    <div class="publication-card pub-filterable" data-type="conference" data-year="2024" onclick="openPubModal('pub6')">
                         <div class="pub-card-header">
                             <span class="pub-type conference">論文</span>
                             <span class="pub-date">2024</span>
@@ -333,7 +343,7 @@
                     </div>
 
                     <!-- pub7: TWSC2 Recycling -->
-                    <div class="publication-card" onclick="openPubModal('pub7')">
+                    <div class="publication-card pub-filterable" data-type="conference" data-year="2024" onclick="openPubModal('pub7')">
                         <div class="pub-card-header">
                             <span class="pub-type conference">論文</span>
                             <span class="pub-date">2024</span>
@@ -350,7 +360,7 @@
                     </div>
 
                     <!-- pub8: AI Forum 海報（已合併至論文） -->
-                    <div class="publication-card" onclick="openPubModal('pub8')">
+                    <div class="publication-card pub-filterable" data-type="conference" data-year="2024" onclick="openPubModal('pub8')">
                         <div class="pub-card-header">
                             <span class="pub-type conference">論文</span>
                             <span class="pub-date">2024</span>
