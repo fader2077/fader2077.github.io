@@ -41,7 +41,6 @@ async function initComponents() {
     
     // Initialize all modules after components are loaded
     initNavigation();
-    initThemeToggle();
     initScrollEffects();
     initCounterAnimation();
     initSmoothScroll();
@@ -79,10 +78,6 @@ function setActiveNavLink() {
 
 // Initialize on DOM ready
 document.addEventListener('DOMContentLoaded', () => {
-    // 立即套用儲存的主題，避免白閃 (FOUC)
-    if (localStorage.getItem('theme') === 'light') {
-        document.body.classList.add('light-mode');
-    }
     initComponents();
 });
 
@@ -374,33 +369,6 @@ function initScrollProgress() {
 }
 
 initScrollProgress();
-
-/* ================================
-   Theme Toggle (Light / Dark Mode)
-================================ */
-function initThemeToggle() {
-    // 設定初始 icon（navbar 已載入後才呼叫）
-    updateThemeIcon();
-
-    // 使用事件委派（因 navbar 為動態載入）
-    document.addEventListener('click', (e) => {
-        if (e.target.closest('#theme-toggle')) {
-            document.body.classList.toggle('light-mode');
-            const isLight = document.body.classList.contains('light-mode');
-            localStorage.setItem('theme', isLight ? 'light' : 'dark');
-            updateThemeIcon();
-        }
-    });
-}
-
-function updateThemeIcon() {
-    const btn = document.getElementById('theme-toggle');
-    if (!btn) return;
-    const icon = btn.querySelector('i');
-    if (!icon) return;
-    const isLight = document.body.classList.contains('light-mode');
-    icon.className = isLight ? 'fas fa-sun' : 'fas fa-moon';
-}
 
 /* ================================
    Console Easter Egg
