@@ -1,4 +1,4 @@
-# 🌐 Li Chieh-Hsin's Portfolio
+# 🌐 Li Jie-Xin's Portfolio
 
 這是我的個人學術與作品集網站，基於 HTML5, CSS3, JavaScript 構建，並部署於 GitHub Pages。
 
@@ -91,7 +91,7 @@ open http://localhost:8000
 - ✅ 結構化資料標記
 
 ## 📄 授權
-© 2025 李捷新 Chieh-Hsin Li. All Rights Reserved.
+© 2026 李捷新 Jie-Xin Li. All Rights Reserved.
 
 ---
 
