@@ -14,7 +14,15 @@ main { padding-block: clamp(3rem, 8vw, 7rem); }
 @media (max-width: 48rem) {
   .desktop-nav { display: none; }
   .mobile-nav { display: block; position: relative; }
-  .mobile-nav nav { position: absolute; right: 0; display: grid; gap: .75rem; min-width: 12rem; padding: 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: .75rem; }
+  .mobile-nav nav { position: absolute; z-index: 10; right: 0; display: grid; gap: .75rem; min-width: 12rem; padding: 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: .75rem; box-shadow: var(--shadow); }
+  .mobile-nav button { padding: .55rem .8rem; color: var(--text); background: var(--surface); border: 1px solid var(--border); border-radius: .65rem; }
+  .mobile-nav a { color: var(--text); text-decoration: none; }
   .card { grid-column: 1 / -1; }
   .site-footer { display: block; }
 }
+.cv-header { display: flex; align-items: start; justify-content: space-between; gap: 2rem; }
+.cv-contact { display: flex; flex-wrap: wrap; gap: .75rem 1.5rem; padding-block: 1.5rem; border-block: 1px solid var(--border); }
+.cv-sheet section { margin-top: 2.5rem; }
+.cv-sheet section article + article { margin-top: 1.25rem; }
+.cv-skills { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; }
+@media (max-width: 48rem) { .cv-header { display: block; } .print-control { margin-top: 1rem; } .cv-skills { grid-template-columns: 1fr; } }

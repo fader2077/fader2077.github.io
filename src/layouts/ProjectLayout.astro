@@ -6,7 +6,20 @@ interface Props { project: CollectionEntry<'projects'>; }
 const { project } = Astro.props;
 const { data } = project;
 ---
-<BaseLayout title={`${data.title} | Jie-Xin Li`} description={data.summary} canonicalPath={`/projects/${data.slug}/`}>
+<BaseLayout
+  title={`${data.title} | Jie-Xin Li`}
+  description={data.summary}
+  canonicalPath={`/projects/${data.slug}/`}
+  structuredData={[{
+    '@type': 'CreativeWork',
+    name: data.title,
+    description: data.summary,
+    url: new URL(`/projects/${data.slug}/`, Astro.site).href,
+    dateModified: data.updatedAt.toISOString(),
+    keywords: data.technologies.join(', '),
+    creator: { '@id': new URL('/#person', Astro.site).href },
+  }]}
+>
   <article class="project-detail">
     <header class="page-intro"><p class="eyebrow">{data.category} · {data.status}</p><h1>{data.title}</h1><p>{data.summary}</p></header>
     <dl class="project-meta"><div><dt>Role</dt><dd>{data.role}</dd></div>{data.period && <div><dt>Period</dt><dd>{data.period}</dd></div>}</dl>

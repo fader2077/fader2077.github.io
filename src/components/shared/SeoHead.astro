@@ -4,6 +4,7 @@ interface Props {
   description: string;
   canonicalPath: string;
   imagePath?: string;
+  structuredData: Record<string, unknown>;
 }
 
 const {
@@ -11,6 +12,7 @@ const {
   description,
   canonicalPath,
   imagePath = '/og-preview.svg',
+  structuredData,
 } = Astro.props;
 const canonical = new URL(canonicalPath, Astro.site);
 const image = new URL(imagePath, Astro.site);
@@ -33,4 +35,5 @@ const image = new URL(imagePath, Astro.site);
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={image} />
+<script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData).replaceAll('<', '\\u003c')} />
 <title>{title}</title>

@@ -1,6 +1,33 @@
 ---
 import CvLayout from '../layouts/CvLayout.astro';
+import { getCollection } from 'astro:content';
+import { getPublicationStats } from '../lib/publication-stats';
+import { loadDataFile } from '../lib/site-data';
+
+interface Profile { nameEn: string; nameZh: string; headline: string; summary: string; email: string; location: string; githubUrl: string; }
+interface Education { school: string; degree: string; field: string; advisor?: string; }
+interface Experience { role: string; organization: string; summary: string; }
+interface SkillGroup { group: string; items: string[]; }
+const profile = await loadDataFile<Profile>('profile');
+const { items: education } = await loadDataFile<{ items: Education[] }>('education');
+const { items: experience } = await loadDataFile<{ items: Experience[] }>('experience');
+const { groups: skills } = await loadDataFile<{ groups: SkillGroup[] }>('skills');
+const publications = await getCollection('publications');
+const stats = getPublicationStats(publications.map(({ data }) => data));
+const verifiedPublications = publications.filter(({ data }) => data.verified).sort((a, b) => b.data.year - a.data.year);
 ---
 <CvLayout title="CV | Jie-Xin Li" description="Curriculum Vitae for Jie-Xin Li, applied AI researcher and engineer." canonicalPath="/cv.html">
-  <header><p class="eyebrow">Curriculum Vitae</p><h1>Jie-Xin Li</h1><p>Applied AI research, trustworthy systems, and deployment-focused engineering.</p></header>
+  <header class="cv-header">
+    <div><p class="eyebrow">Curriculum Vitae</p><h1>{profile.nameEn}</h1><p>{profile.nameZh} · {profile.headline}</p><p>{profile.summary}</p></div>
+    <button class="button print-control" type="button" data-print-cv>Print CV</button>
+  </header>
+  <div class="cv-contact"><a href={`mailto:${profile.email}`}>{profile.email}</a><span>{profile.location}</span><a href={profile.githubUrl} target="_blank" rel="noopener noreferrer">GitHub</a></div>
+  <section><h2>Education</h2>{education.map((item) => <article><h3>{item.degree} · {item.field}</h3><p>{item.school}{item.advisor ? ` · ${item.advisor}` : ''}</p></article>)}</section>
+  <section><h2>Experience</h2>{experience.map((item) => <article><h3>{item.role}</h3><p><strong>{item.organization}</strong> · {item.summary}</p></article>)}</section>
+  <section><h2>Verified publications</h2><p><strong data-verified-publication-count>{stats.formalResults}</strong> independently verified formal results.</p>{verifiedPublications.map(({ data }) => <article><h3>{data.title}</h3><p>{data.year} · {data.venue}{data.doi ? <Fragment> · <a href={`https://doi.org/${data.doi}`}>DOI</a></Fragment> : null}</p></article>)}</section>
+  <section><h2>Capabilities</h2><div class="cv-skills">{skills.map((group) => <article><h3>{group.group}</h3><ul>{group.items.map((item) => <li>{item}</li>)}</ul></article>)}</div></section>
 </CvLayout>
+
+<script>
+  document.querySelector('[data-print-cv]')?.addEventListener('click', () => window.print());
+</script>

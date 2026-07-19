@@ -26,3 +26,8 @@
 .research-list { display: grid; gap: 1rem; padding-left: 1.25rem; font-size: 1.1rem; }
 .verification-note { color: #fbbf24; }
 .contact-card { max-width: 52rem; }
+.filter-bar { display: flex; flex-wrap: wrap; align-items: end; gap: 1rem; margin-top: 2rem; padding: 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
+.filter-bar label { display: grid; gap: .4rem; color: var(--muted); font-weight: 700; }
+.filter-bar select, .filter-bar button { min-height: 2.75rem; padding: .55rem .75rem; color: var(--text); background: var(--surface-2); border: 1px solid var(--border); border-radius: .65rem; }
+.filter-bar button { cursor: pointer; }
+.filter-bar output { margin-left: auto; color: var(--muted); }

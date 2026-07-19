@@ -3,9 +3,31 @@ interface Item { label: string; href: string; external: boolean; }
 interface Props { items: Item[]; currentPath: string; }
 const { items, currentPath } = Astro.props;
 ---
-<details class="mobile-nav">
-  <summary aria-label="Open navigation">Menu</summary>
-  <nav aria-label="Mobile navigation">
+<div class="mobile-nav" data-mobile-navigation>
+  <button type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-navigation-panel">Menu</button>
+  <nav id="mobile-navigation-panel" aria-label="Mobile navigation" hidden>
     {items.map((item) => <a href={item.href} aria-current={!item.external && currentPath === item.href ? 'page' : undefined} target={item.external ? '_blank' : undefined} rel={item.external ? 'noopener noreferrer' : undefined}>{item.label}</a>)}
   </nav>
-</details>
+</div>
+
+<script>
+  const container = document.querySelector<HTMLElement>('[data-mobile-navigation]');
+  const trigger = container?.querySelector<HTMLButtonElement>('button[aria-controls]');
+  const panel = container?.querySelector<HTMLElement>('nav');
+
+  const setOpen = (open: boolean, restoreFocus = false) => {
+    if (!trigger || !panel) return;
+    trigger.setAttribute('aria-expanded', String(open));
+    trigger.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+    panel.hidden = !open;
+    if (restoreFocus) trigger.focus();
+  };
+
+  trigger?.addEventListener('click', () => setOpen(trigger.getAttribute('aria-expanded') !== 'true'));
+  panel?.addEventListener('click', (event) => {
+    if ((event.target as Element).closest('a')) setOpen(false);
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && trigger?.getAttribute('aria-expanded') === 'true') setOpen(false, true);
+  });
+</script>

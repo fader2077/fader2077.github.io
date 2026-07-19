@@ -7,17 +7,35 @@ import '../styles/global.css';
 import '../styles/layout.css';
 import '../styles/components.css';
 import '../styles/utilities.css';
+import { loadDataFile } from '../lib/site-data';
 
 interface Props {
   title: string;
   description: string;
   canonicalPath: string;
+  structuredData?: Record<string, unknown>[];
 }
 const props = Astro.props;
+const profile = await loadDataFile<{ nameEn: string; nameZh: string; headline: string; email: string; location: string; githubUrl: string }>('profile');
+const person = {
+  '@type': 'Person',
+  '@id': new URL('/#person', Astro.site).href,
+  name: profile.nameEn,
+  alternateName: profile.nameZh,
+  jobTitle: profile.headline,
+  email: `mailto:${profile.email}`,
+  address: { '@type': 'PostalAddress', addressCountry: profile.location },
+  sameAs: [profile.githubUrl],
+  url: new URL('/', Astro.site).href,
+};
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [person, ...(props.structuredData ?? [])],
+};
 ---
 <!doctype html>
 <html lang="zh-TW">
-  <head><SeoHead {...props} /></head>
+  <head><SeoHead {...props} structuredData={structuredData} /></head>
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
     <Header />
