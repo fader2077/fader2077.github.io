@@ -33,7 +33,7 @@ collections:
       - { label: Period, name: period, widget: string, required: false }
       - { label: Role, name: role, widget: string }
       - { label: Team size, name: teamSize, widget: number, value_type: int, min: 1, required: false }
-      - { label: Visibility, name: visibility, widget: select, options: [public, private, confidential] }
+      - { label: Site visibility, name: visibility, widget: select, options: [public, private, confidential], hint: Private/confidential only hides the generated page. This repository is public; never store sensitive content here. }
       - { label: Category, name: category, widget: string }
       - { label: Technologies, name: technologies, widget: list, field: { label: Technology, name: technology, widget: string } }
       - { label: Repository URL, name: repositoryUrl, widget: string, required: false, pattern: ['^https://', 'Use an HTTPS URL'] }
@@ -72,7 +72,7 @@ collections:
       - { label: Year, name: year, widget: number, value_type: int, min: 1900, max: 2100 }
       - { label: Type, name: type, widget: select, options: [journal, conference, workshop, poster] }
       - { label: Status, name: status, widget: select, options: [published, accepted, in_press, under_revision, under_review, submitted] }
-      - { label: Metadata verified, name: verified, widget: boolean, default: false }
+      - { label: Metadata verified, name: verified, widget: boolean, default: false, hint: Requires a verification note and authoritative DOI or URL. Only formal statuses enter CV and result totals. }
       - { label: Verification note, name: verificationNote, widget: text, required: false }
       - { label: DOI, name: doi, widget: string, required: false }
       - { label: Canonical URL, name: url, widget: string, required: false, pattern: ['^https://', 'Use an HTTPS URL'] }
@@ -181,9 +181,13 @@ collections:
         name: seo
         file: src/data/seo.yml
         fields:
+          - { label: Site name, name: siteName, widget: string }
           - { label: Default title, name: defaultTitle, widget: string }
-          - { label: Description, name: description, widget: text }
+          - { label: Default description, name: defaultDescription, widget: text }
+          - { label: Site URL, name: siteUrl, widget: string, pattern: ['^https://', 'Use an HTTPS URL'] }
           - { label: Locale, name: locale, widget: string }
+          - { label: HTML language, name: language, widget: string }
+          - { label: Social image, name: image, widget: image }
       - label: Contact
         name: contact
         file: src/data/contact.yml

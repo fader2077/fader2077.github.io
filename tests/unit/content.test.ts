@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { isProjectFeatured, isProjectPublic, metricHasEvidence } from '../../src/lib/content-status';
-import { getPublicationStats } from '../../src/lib/publication-stats';
+import { getPublicationStats, isFormalPublication } from '../../src/lib/publication-stats';
 import { sortProjects, sortPublications } from '../../src/lib/sort-content';
 
 const project = {
@@ -48,6 +48,12 @@ describe('deterministic sorting', () => {
 });
 
 describe('publication statistics', () => {
+  it('uses one formal-result predicate for every public claim', () => {
+    expect(isFormalPublication({ status: 'published', verified: true })).toBe(true);
+    expect(isFormalPublication({ status: 'under_review', verified: true })).toBe(false);
+    expect(isFormalPublication({ status: 'accepted', verified: false })).toBe(false);
+  });
+
   it('counts only verified formal results', () => {
     const stats = getPublicationStats([
       { year: 2026, status: 'published', verified: true },

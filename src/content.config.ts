@@ -55,6 +55,13 @@ const publications = defineCollection({
     tags: z.array(z.string().min(1)),
     featured: z.boolean(),
     abstract: z.string().optional(),
+  }).superRefine((publication, context) => {
+    if (publication.verified && (!publication.verificationNote || (!publication.doi && !publication.url))) {
+      context.addIssue({
+        code: 'custom',
+        message: 'Verified publications require a verification note and an authoritative DOI or URL',
+      });
+    }
   }),
 });
 

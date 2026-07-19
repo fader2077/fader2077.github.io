@@ -10,12 +10,13 @@ import '../styles/utilities.css';
 import { loadDataFile } from '../lib/site-data';
 
 interface Props {
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
   canonicalPath: string;
   structuredData?: Record<string, unknown>[];
 }
 const props = Astro.props;
+const seo = await loadDataFile<{ siteName: string; defaultTitle: string; defaultDescription: string; siteUrl: string; locale: string; language: string; image: string }>('seo');
 const profile = await loadDataFile<{ nameEn: string; nameZh: string; headline: string; email: string; location: string; githubUrl: string }>('profile');
 const person = {
   '@type': 'Person',
@@ -32,10 +33,12 @@ const structuredData = {
   '@context': 'https://schema.org',
   '@graph': [person, ...(props.structuredData ?? [])],
 };
+const title = props.title ?? seo.defaultTitle;
+const description = props.description ?? seo.defaultDescription;
 ---
 <!doctype html>
-<html lang="zh-TW">
-  <head><SeoHead {...props} structuredData={structuredData} /></head>
+<html lang={seo.language}>
+  <head><SeoHead {...props} title={title} description={description} structuredData={structuredData} settings={seo} /></head>
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
     <Header />

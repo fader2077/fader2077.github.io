@@ -5,17 +5,19 @@ interface Props {
   canonicalPath: string;
   imagePath?: string;
   structuredData: Record<string, unknown>;
+  settings: { siteName: string; locale: string; image: string };
 }
 
 const {
   title,
   description,
   canonicalPath,
-  imagePath = '/og-preview.svg',
+  imagePath,
   structuredData,
+  settings,
 } = Astro.props;
 const canonical = new URL(canonicalPath, Astro.site);
-const image = new URL(imagePath, Astro.site);
+const image = new URL(imagePath ?? settings.image, Astro.site);
 const deploySha = import.meta.env.PUBLIC_DEPLOY_SHA || 'local';
 ---
 
@@ -26,9 +28,9 @@ const deploySha = import.meta.env.PUBLIC_DEPLOY_SHA || 'local';
 <meta name="deploy-sha" content={deploySha} />
 <link rel="canonical" href={canonical} />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-<meta property="og:locale" content="zh_TW" />
+<meta property="og:locale" content={settings.locale} />
 <meta property="og:type" content="website" />
-<meta property="og:site_name" content="Jie-Xin Li" />
+<meta property="og:site_name" content={settings.siteName} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:url" content={canonical} />

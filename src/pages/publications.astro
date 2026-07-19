@@ -2,12 +2,12 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PublicationItem from '../components/publications/PublicationItem.astro';
 import { getCollection } from 'astro:content';
-import { getPublicationStats } from '../lib/publication-stats';
+import { getPublicationStats, isFormalPublication } from '../lib/publication-stats';
 import { sortPublications } from '../lib/sort-content';
 const entries = await getCollection('publications');
 const publications = sortPublications(entries.map((entry) => ({ ...entry.data, entry }))).map(({ entry }) => entry);
 const stats = getPublicationStats(publications.map(({ data }) => data));
-const articleSchemas = publications.filter(({ data }) => data.verified).map(({ data }) => ({
+const articleSchemas = publications.filter(({ data }) => isFormalPublication(data)).map(({ data }) => ({
   '@type': 'ScholarlyArticle',
   headline: data.title,
   author: data.authors.map((name) => ({ '@type': 'Person', name })),
