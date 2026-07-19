@@ -1,0 +1,193 @@
+backend:
+  name: github
+  repo: fader2077/fader2077.github.io
+  branch: main
+  use_graphql: true
+  squash_merges: true
+
+publish_mode: editorial_workflow
+media_folder: public/uploads
+public_folder: /uploads
+site_url: https://fader2077.github.io
+display_url: https://fader2077.github.io
+logo_url: https://fader2077.github.io/favicon.svg
+
+collections:
+  - name: projects
+    label: Projects
+    label_singular: Project
+    folder: src/content/projects
+    create: true
+    extension: md
+    format: frontmatter
+    slug: "{{fields.slug}}"
+    identifier_field: title
+    summary: "{{title}} · {{status}} · {{visibility}}"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Slug, name: slug, widget: string, pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', 'Lowercase letters, numbers, and hyphens only'] }
+      - { label: Summary, name: summary, widget: text }
+      - { label: Status, name: status, widget: select, options: [draft, published, archived] }
+      - { label: Featured, name: featured, widget: boolean, default: false }
+      - { label: Featured order, name: featuredOrder, widget: number, value_type: int, min: 1, required: false }
+      - { label: Period, name: period, widget: string, required: false }
+      - { label: Role, name: role, widget: string }
+      - { label: Team size, name: teamSize, widget: number, value_type: int, min: 1, required: false }
+      - { label: Visibility, name: visibility, widget: select, options: [public, private, confidential] }
+      - { label: Category, name: category, widget: string }
+      - { label: Technologies, name: technologies, widget: list, field: { label: Technology, name: technology, widget: string } }
+      - { label: Repository URL, name: repositoryUrl, widget: string, required: false, pattern: ['^https://', 'Use an HTTPS URL'] }
+      - { label: Demo URL, name: demoUrl, widget: string, required: false, pattern: ['^https://', 'Use an HTTPS URL'] }
+      - { label: Paper URL, name: paperUrl, widget: string, required: false, pattern: ['^https://', 'Use an HTTPS URL'] }
+      - { label: Report URL, name: reportUrl, widget: string, required: false, pattern: ['^https://', 'Use an HTTPS URL'] }
+      - { label: Cover image, name: coverImage, widget: image, required: false }
+      - label: Metrics
+        name: metrics
+        widget: list
+        required: false
+        summary: "{{fields.label}}: {{fields.value}}"
+        fields:
+          - { label: Label, name: label, widget: string }
+          - { label: Value, name: value, widget: string }
+          - { label: Evidence URL, name: evidenceUrl, widget: string, required: false, pattern: ['^https://', 'Use an HTTPS URL'] }
+          - { label: Evidence note, name: evidenceNote, widget: text, required: false, hint: One evidence URL or note is required by the build schema. }
+      - { label: Updated at, name: updatedAt, widget: datetime, date_format: YYYY-MM-DD, time_format: false, format: YYYY-MM-DD }
+      - { label: Case study, name: body, widget: markdown }
+
+  - name: publications
+    label: Publications
+    label_singular: Publication
+    folder: src/content/publications
+    create: true
+    extension: md
+    format: frontmatter
+    slug: "{{slug}}"
+    identifier_field: title
+    summary: "{{year}} · {{title}} · {{status}}"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Authors, name: authors, widget: list, field: { label: Author, name: author, widget: string } }
+      - { label: Highlighted author, name: highlightedAuthor, widget: string }
+      - { label: Venue, name: venue, widget: string }
+      - { label: Year, name: year, widget: number, value_type: int, min: 1900, max: 2100 }
+      - { label: Type, name: type, widget: select, options: [journal, conference, workshop, poster] }
+      - { label: Status, name: status, widget: select, options: [published, accepted, in_press, under_revision, under_review, submitted] }
+      - { label: Metadata verified, name: verified, widget: boolean, default: false }
+      - { label: Verification note, name: verificationNote, widget: text, required: false }
+      - { label: DOI, name: doi, widget: string, required: false }
+      - { label: Canonical URL, name: url, widget: string, required: false, pattern: ['^https://', 'Use an HTTPS URL'] }
+      - { label: PDF URL, name: pdfUrl, widget: string, required: false, pattern: ['^https://', 'Use an HTTPS URL'] }
+      - { label: Code URL, name: codeUrl, widget: string, required: false, pattern: ['^https://', 'Use an HTTPS URL'] }
+      - { label: Tags, name: tags, widget: list, field: { label: Tag, name: tag, widget: string } }
+      - { label: Featured, name: featured, widget: boolean, default: false }
+      - { label: Abstract, name: abstract, widget: text, required: false }
+      - { label: Notes, name: body, widget: markdown, required: false }
+
+  - name: settings
+    label: Site settings
+    files:
+      - label: Profile
+        name: profile
+        file: src/data/profile.yml
+        fields:
+          - { label: Chinese name, name: nameZh, widget: string }
+          - { label: English name, name: nameEn, widget: string }
+          - { label: Headline, name: headline, widget: string }
+          - { label: Subtitle, name: subtitle, widget: text }
+          - { label: Summary, name: summary, widget: text }
+          - { label: Email, name: email, widget: string }
+          - { label: Location, name: location, widget: string }
+          - { label: GitHub URL, name: githubUrl, widget: string, pattern: ['^https://', 'Use an HTTPS URL'] }
+          - { label: CV URL, name: cvUrl, widget: string, pattern: ['^/', 'Use a root-relative URL'] }
+          - { label: Current research, name: currentResearch, widget: list, field: { label: Topic, name: topic, widget: string } }
+      - label: Education
+        name: education
+        file: src/data/education.yml
+        fields:
+          - label: Education entries
+            name: items
+            widget: list
+            fields:
+              - { label: School, name: school, widget: string }
+              - { label: Degree, name: degree, widget: string }
+              - { label: Field, name: field, widget: string }
+              - { label: Advisor, name: advisor, widget: string, required: false }
+      - label: Experience
+        name: experience
+        file: src/data/experience.yml
+        fields:
+          - label: Experience entries
+            name: items
+            widget: list
+            fields:
+              - { label: Role, name: role, widget: string }
+              - { label: Organization, name: organization, widget: string }
+              - { label: Summary, name: summary, widget: text }
+      - label: Awards
+        name: awards
+        file: src/data/awards.yml
+        fields:
+          - label: Award entries
+            name: items
+            widget: list
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Year, name: year, widget: number, value_type: int }
+              - { label: Issuer, name: issuer, widget: string }
+              - { label: Verification required, name: verificationRequired, widget: boolean, default: true }
+      - label: Skills
+        name: skills
+        file: src/data/skills.yml
+        fields:
+          - label: Skill groups
+            name: groups
+            widget: list
+            fields:
+              - { label: Group, name: group, widget: string }
+              - { label: Skills, name: items, widget: list, field: { label: Skill, name: skill, widget: string } }
+      - label: Navigation
+        name: navigation
+        file: src/data/navigation.yml
+        fields:
+          - label: Navigation items
+            name: items
+            widget: list
+            fields:
+              - { label: Label, name: label, widget: string }
+              - { label: URL, name: href, widget: string, hint: Internal URLs start with /; external URLs must use https. }
+              - { label: Enabled, name: enabled, widget: boolean, default: true }
+              - { label: Order, name: order, widget: number, value_type: int }
+              - { label: External, name: external, widget: boolean, default: false }
+      - label: Homepage sections
+        name: site_sections
+        file: src/data/site-sections.yml
+        fields:
+          - label: Sections
+            name: sections
+            widget: list
+            summary: "{{fields.order}} · {{fields.type}} · {{fields.enabled}}"
+            fields:
+              - { label: ID, name: id, widget: string, pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', 'Lowercase letters, numbers, and hyphens only'] }
+              - { label: Type, name: type, widget: select, options: [hero, featured-projects, current-research, publications, experience, awards, skills, contact, custom-markdown] }
+              - { label: Enabled, name: enabled, widget: boolean, default: true }
+              - { label: Order, name: order, widget: number, value_type: int }
+              - { label: Title, name: title, widget: string, required: false }
+              - { label: Subtitle, name: subtitle, widget: text, required: false }
+              - { label: Maximum items, name: maxItems, widget: number, value_type: int, min: 1, required: false }
+              - { label: Variant, name: variant, widget: select, options: [featured, grid, list, compact], required: false }
+              - { label: Show more link, name: showMoreLink, widget: boolean, required: false, default: false }
+              - { label: Custom Markdown, name: body, widget: markdown, required: false, hint: Used only by the custom-markdown type. Executable HTML is removed. }
+      - label: SEO
+        name: seo
+        file: src/data/seo.yml
+        fields:
+          - { label: Default title, name: defaultTitle, widget: string }
+          - { label: Description, name: description, widget: text }
+          - { label: Locale, name: locale, widget: string }
+      - label: Contact
+        name: contact
+        file: src/data/contact.yml
+        fields:
+          - { label: Heading, name: heading, widget: string }
+          - { label: Body, name: body, widget: text }
+          - { label: Email, name: email, widget: string }

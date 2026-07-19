@@ -1,0 +1,21 @@
+groups:
+  - group: Applied AI Engineering
+    items:
+      - Python and typed data pipelines
+      - PyTorch model development and evaluation
+      - Computer vision and multi-task learning
+  - group: Trustworthy LLM Systems
+    items:
+      - Retrieval-augmented generation and knowledge graphs
+      - PEFT and LoRA workflows
+      - Evidence, failure-mode, and abstention evaluation
+  - group: Edge and Accelerated AI
+    items:
+      - Vitis AI and KV260 deployment
+      - Verilog and PYNQ integration
+      - Quantization-aware system evaluation
+  - group: Research Delivery
+    items:
+      - Reproducible experiments and technical writing
+      - Git, Linux, CI, and static-site delivery
+      - Evidence-linked portfolio communication

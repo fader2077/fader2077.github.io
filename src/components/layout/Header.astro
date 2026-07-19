@@ -1,17 +1,14 @@
 ---
 import MobileNavigation from './MobileNavigation.astro';
-
-const items = [
-  { label: 'Home', href: '/' },
-  { label: 'Projects', href: '/projects.html' },
-  { label: 'Publications', href: '/publications.html' },
-  { label: 'CV', href: '/cv.html' },
-];
+import { loadDataFile, validateNavigation, type NavigationItem } from '../../lib/site-data';
+const { items: navigationItems } = await loadDataFile<{ items: NavigationItem[] }>('navigation');
+const items = validateNavigation(navigationItems).filter(({ enabled }) => enabled);
+const currentPath = Astro.url.pathname;
 ---
 <header class="site-header">
   <a class="brand" href="/" aria-label="Jie-Xin Li home">JX<span>.</span></a>
   <nav class="desktop-nav" aria-label="Primary navigation">
-    {items.map((item) => <a href={item.href}>{item.label}</a>)}
+    {items.map((item) => <a href={item.href} aria-current={!item.external && currentPath === item.href ? 'page' : undefined} target={item.external ? '_blank' : undefined} rel={item.external ? 'noopener noreferrer' : undefined}>{item.label}</a>)}
   </nav>
-  <MobileNavigation items={items} />
+  <MobileNavigation items={items} currentPath={currentPath} />
 </header>

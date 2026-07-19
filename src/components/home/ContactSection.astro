@@ -1,0 +1,15 @@
+---
+import ExternalLink from '../shared/ExternalLink.astro';
+import SectionHeader from '../shared/SectionHeader.astro';
+import { loadDataFile } from '../../lib/site-data';
+import type { SiteSection } from '../../lib/section-types';
+interface Props { section: SiteSection; }
+interface Contact { heading: string; body: string; email: string; githubUrl: string; }
+const { section } = Astro.props;
+const contact = await loadDataFile<Contact>('contact');
+---
+<section id={section.id} class="home-section contact-card card" data-section-id={section.id}>
+  <SectionHeader eyebrow="Contact" title={section.title ?? contact.heading} />
+  <p>{contact.body}</p>
+  <div class="button-row"><a class="button" href={`mailto:${contact.email}`}>Email</a><ExternalLink class="button secondary" href={contact.githubUrl}>GitHub</ExternalLink></div>
+</section>

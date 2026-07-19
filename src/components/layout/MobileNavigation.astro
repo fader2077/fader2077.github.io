@@ -1,11 +1,11 @@
 ---
-interface Item { label: string; href: string; }
-interface Props { items: Item[]; }
-const { items } = Astro.props;
+interface Item { label: string; href: string; external: boolean; }
+interface Props { items: Item[]; currentPath: string; }
+const { items, currentPath } = Astro.props;
 ---
 <details class="mobile-nav">
   <summary aria-label="Open navigation">Menu</summary>
   <nav aria-label="Mobile navigation">
-    {items.map((item) => <a href={item.href}>{item.label}</a>)}
+    {items.map((item) => <a href={item.href} aria-current={!item.external && currentPath === item.href ? 'page' : undefined} target={item.external ? '_blank' : undefined} rel={item.external ? 'noopener noreferrer' : undefined}>{item.label}</a>)}
   </nav>
 </details>

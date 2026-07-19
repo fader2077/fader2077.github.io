@@ -21,3 +21,8 @@
 .project-meta dd { margin: 0; }
 .prose { margin-top: 3rem; }
 .prose h2 { margin-top: 2.5rem; }
+.hero-name { margin: 0; color: var(--text); font-weight: 700; }
+.hero-subtitle { font-size: clamp(1.1rem, 2vw, 1.4rem); }
+.research-list { display: grid; gap: 1rem; padding-left: 1.25rem; font-size: 1.1rem; }
+.verification-note { color: #fbbf24; }
+.contact-card { max-width: 52rem; }

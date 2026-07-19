@@ -1,0 +1,12 @@
+body {
+  box-sizing: border-box;
+  max-width: 72ch;
+  margin: 0 auto;
+  padding: 2rem;
+  color: #e8edf7;
+  background: #0b1020;
+  font: 16px/1.65 system-ui, sans-serif;
+}
+
+a { color: #72d6ff; }
+img { max-width: 100%; height: auto; }

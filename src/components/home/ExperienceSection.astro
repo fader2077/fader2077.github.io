@@ -1,0 +1,13 @@
+---
+import SectionHeader from '../shared/SectionHeader.astro';
+import { loadDataFile } from '../../lib/site-data';
+import type { SiteSection } from '../../lib/section-types';
+interface Props { section: SiteSection; }
+interface Experience { role: string; organization: string; summary: string; }
+const { section } = Astro.props;
+const { items: experience } = await loadDataFile<{ items: Experience[] }>('experience');
+---
+<section id={section.id} class="home-section" data-section-id={section.id}>
+  <SectionHeader eyebrow="Practice" title={section.title ?? 'Experience'} subtitle={section.subtitle} />
+  <div class="grid">{experience.map((item) => <article class="card"><h3>{item.role}</h3><p>{item.organization}</p><p>{item.summary}</p></article>)}</div>
+</section>

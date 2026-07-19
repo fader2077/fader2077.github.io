@@ -1,0 +1,21 @@
+items:
+  - label: Home
+    href: /
+    enabled: true
+    order: 10
+    external: false
+  - label: Projects
+    href: /projects.html
+    enabled: true
+    order: 20
+    external: false
+  - label: Publications
+    href: /publications.html
+    enabled: true
+    order: 30
+    external: false
+  - label: CV
+    href: /cv.html
+    enabled: true
+    order: 40
+    external: false

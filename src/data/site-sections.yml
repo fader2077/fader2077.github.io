@@ -1,0 +1,60 @@
+sections:
+  - id: hero
+    type: hero
+    enabled: true
+    order: 10
+    variant: featured
+  - id: featured-projects
+    type: featured-projects
+    enabled: true
+    order: 20
+    title: Featured Projects
+    subtitle: Selected systems with explicit evidence boundaries.
+    maxItems: 4
+    variant: grid
+    showMoreLink: true
+  - id: current-research
+    type: current-research
+    enabled: true
+    order: 30
+    title: Current Research
+    variant: list
+  - id: publications
+    type: publications
+    enabled: true
+    order: 40
+    title: Selected Publications
+    maxItems: 4
+    variant: compact
+    showMoreLink: true
+  - id: experience
+    type: experience
+    enabled: true
+    order: 50
+    title: Experience
+    variant: list
+  - id: awards
+    type: awards
+    enabled: true
+    order: 60
+    title: Awards
+    variant: compact
+  - id: skills
+    type: skills
+    enabled: true
+    order: 70
+    title: Capabilities
+    subtitle: Evidence-oriented groups, not percentage scores.
+    variant: grid
+  - id: contact
+    type: contact
+    enabled: true
+    order: 80
+    title: Contact
+    variant: featured
+  - id: notes
+    type: custom-markdown
+    enabled: false
+    order: 90
+    title: Notes
+    body: "## Research notes\n\nThis section can be enabled from the CMS."

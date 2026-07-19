@@ -1,0 +1,13 @@
+---
+import SectionHeader from '../shared/SectionHeader.astro';
+import { loadDataFile } from '../../lib/site-data';
+import type { SiteSection } from '../../lib/section-types';
+interface Props { section: SiteSection; }
+interface Profile { currentResearch: string[]; }
+const { section } = Astro.props;
+const profile = await loadDataFile<Profile>('profile');
+---
+<section id={section.id} class="home-section" data-section-id={section.id}>
+  <SectionHeader eyebrow="In progress" title={section.title ?? 'Current Research'} subtitle={section.subtitle} />
+  <ul class="research-list">{profile.currentResearch.map((item) => <li>{item}</li>)}</ul>
+</section>

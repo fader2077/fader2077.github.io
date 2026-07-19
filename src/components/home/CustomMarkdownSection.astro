@@ -1,0 +1,12 @@
+---
+import SectionHeader from '../shared/SectionHeader.astro';
+import { renderSafeMarkdown } from '../../lib/safe-markdown';
+import type { SiteSection } from '../../lib/section-types';
+interface Props { section: SiteSection; }
+const { section } = Astro.props;
+const html = await renderSafeMarkdown(section.body ?? '');
+---
+<section id={section.id} class="home-section" data-section-id={section.id}>
+  <SectionHeader title={section.title ?? 'Notes'} subtitle={section.subtitle} />
+  <div class="prose" set:html={html} />
+</section>

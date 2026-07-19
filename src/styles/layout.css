@@ -5,6 +5,7 @@
 .brand { font: 800 1.5rem ui-monospace, monospace; }
 .brand span, .eyebrow { color: var(--accent); }
 main { padding-block: clamp(3rem, 8vw, 7rem); }
+.home-section { padding-block: clamp(3rem, 8vw, 6rem); }
 .hero, .page-intro { display: grid; gap: 1.5rem; max-width: 54rem; }
 .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 1rem; margin-top: 3rem; }
 .card { grid-column: span 6; }

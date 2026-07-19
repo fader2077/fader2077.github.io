@@ -1,0 +1,16 @@
+---
+import { getCollection } from 'astro:content';
+import ProjectCard from '../projects/ProjectCard.astro';
+import SectionHeader from '../shared/SectionHeader.astro';
+import { isProjectFeatured } from '../../lib/content-status';
+import { sortProjects } from '../../lib/sort-content';
+import type { SiteSection } from '../../lib/section-types';
+interface Props { section: SiteSection; }
+const { section } = Astro.props;
+const projects = sortProjects((await getCollection('projects')).filter(({ data }) => isProjectFeatured(data)).map((entry) => ({ ...entry.data, entry }))).slice(0, section.maxItems ?? 4).map(({ entry }) => entry);
+---
+<section id={section.id} class="home-section" data-section-id={section.id}>
+  <SectionHeader eyebrow="Selected work" title={section.title ?? 'Featured Projects'} subtitle={section.subtitle} />
+  <div class="grid">{projects.map((project) => <ProjectCard project={project} />)}</div>
+  {section.showMoreLink && <p><a href="/projects.html">View all projects →</a></p>}
+</section>

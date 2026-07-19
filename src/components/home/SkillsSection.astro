@@ -1,0 +1,13 @@
+---
+import SectionHeader from '../shared/SectionHeader.astro';
+import { loadDataFile } from '../../lib/site-data';
+import type { SiteSection } from '../../lib/section-types';
+interface Props { section: SiteSection; }
+interface SkillGroup { group: string; items: string[]; }
+const { section } = Astro.props;
+const { groups } = await loadDataFile<{ groups: SkillGroup[] }>('skills');
+---
+<section id={section.id} class="home-section" data-section-id={section.id}>
+  <SectionHeader eyebrow="Capabilities" title={section.title ?? 'Skills'} subtitle={section.subtitle} />
+  <div class="grid">{groups.map((group) => <article class="card"><h3>{group.group}</h3><ul>{group.items.map((item) => <li>{item}</li>)}</ul></article>)}</div>
+</section>

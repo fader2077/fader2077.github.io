@@ -1,0 +1,23 @@
+---
+import Badge from '../shared/Badge.astro';
+import ExternalLink from '../shared/ExternalLink.astro';
+import { loadDataFile } from '../../lib/site-data';
+import type { SiteSection } from '../../lib/section-types';
+interface Props { section: SiteSection; }
+interface Profile { nameZh: string; nameEn: string; headline: string; subtitle: string; summary: string; email: string; githubUrl: string; cvUrl: string; }
+const { section } = Astro.props;
+const profile = await loadDataFile<Profile>('profile');
+---
+<section id={section.id} class="hero home-section" data-section-id={section.id}>
+  <Badge label="Applied AI Research" />
+  <p class="hero-name">{profile.nameZh} · {profile.nameEn}</p>
+  <h1>{profile.headline}</h1>
+  <p class="hero-subtitle">{profile.subtitle}</p>
+  <p>{profile.summary}</p>
+  <div class="button-row">
+    <a class="button" href="/projects.html">View Projects</a>
+    <a class="button secondary" href={profile.cvUrl}>View CV</a>
+    <ExternalLink class="button secondary" href={profile.githubUrl}>GitHub</ExternalLink>
+    <a class="button secondary" href="#contact">Contact</a>
+  </div>
+</section>

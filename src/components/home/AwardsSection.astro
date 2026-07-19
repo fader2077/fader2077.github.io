@@ -1,0 +1,13 @@
+---
+import SectionHeader from '../shared/SectionHeader.astro';
+import { loadDataFile } from '../../lib/site-data';
+import type { SiteSection } from '../../lib/section-types';
+interface Props { section: SiteSection; }
+interface Award { title: string; year: number; issuer: string; verificationRequired?: boolean; }
+const { section } = Astro.props;
+const { items: awards } = await loadDataFile<{ items: Award[] }>('awards');
+---
+<section id={section.id} class="home-section" data-section-id={section.id}>
+  <SectionHeader eyebrow="Recognition" title={section.title ?? 'Awards'} subtitle={section.subtitle} />
+  <div class="grid">{awards.map((award) => <article class="card"><p class="eyebrow">{award.year}</p><h3>{award.title}</h3><p>{award.issuer}</p>{award.verificationRequired && <p class="verification-note">Verification record requested.</p>}</article>)}</div>
+</section>

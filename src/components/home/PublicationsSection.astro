@@ -1,0 +1,18 @@
+---
+import { getCollection } from 'astro:content';
+import PublicationItem from '../publications/PublicationItem.astro';
+import SectionHeader from '../shared/SectionHeader.astro';
+import { getPublicationStats } from '../../lib/publication-stats';
+import { sortPublications } from '../../lib/sort-content';
+import type { SiteSection } from '../../lib/section-types';
+interface Props { section: SiteSection; }
+const { section } = Astro.props;
+const all = await getCollection('publications');
+const selected = sortPublications(all.filter(({ data }) => data.featured && data.verified).map((entry) => ({ ...entry.data, entry }))).slice(0, section.maxItems ?? 4).map(({ entry }) => entry);
+const stats = getPublicationStats(all.map(({ data }) => data));
+---
+<section id={section.id} class="home-section" data-section-id={section.id}>
+  <SectionHeader eyebrow={`${stats.formalResults} verified formal results`} title={section.title ?? 'Selected Publications'} subtitle={section.subtitle} />
+  <div class="publication-list">{selected.map((publication) => <PublicationItem publication={publication} />)}</div>
+  {section.showMoreLink && <p><a href="/publications.html">View publication record →</a></p>}
+</section>

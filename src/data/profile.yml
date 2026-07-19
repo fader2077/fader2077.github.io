@@ -1,0 +1,13 @@
+nameZh: 李捷新
+nameEn: Jie-Xin Li
+headline: Applied AI & Trustworthy LLM Systems
+subtitle: 專注於 Agentic GraphRAG、可信任 AI、AI Security 與可部署 AI 系統。
+summary: 以證據、可重現評估與部署限制為核心，整理 AI 研究與系統實作。
+email: jiexinli3@gmail.com
+location: Taiwan
+githubUrl: https://github.com/fader2077
+cvUrl: /cv.html
+currentResearch:
+  - Evidence sufficiency and abstention for GraphRAG systems
+  - Trustworthy evaluation for deployed language-model workflows
+  - Efficient edge AI deployment and measurement
