@@ -1,0 +1,18 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import ProjectLayout from '../../../layouts/ProjectLayout.astro';
+import { isProjectPublic } from '../../../lib/content-status';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.filter(({ data }) => isProjectPublic(data)).map((project) => ({
+    params: { slug: project.data.slug },
+    props: { project },
+  }));
+}
+
+interface Props { project: CollectionEntry<'projects'>; }
+const { project } = Astro.props;
+const { Content } = await render(project);
+---
+<ProjectLayout project={project}><Content /></ProjectLayout>

@@ -1,0 +1,11 @@
+---
+import ExternalLink from '../shared/ExternalLink.astro';
+interface Props { repositoryUrl?: string; demoUrl?: string; paperUrl?: string; reportUrl?: string; }
+const links = [
+  ['Repository', Astro.props.repositoryUrl],
+  ['Demo', Astro.props.demoUrl],
+  ['Paper', Astro.props.paperUrl],
+  ['Report', Astro.props.reportUrl],
+].filter((entry): entry is [string, string] => Boolean(entry[1]));
+---
+{links.length > 0 && <div class="button-row evidence-links">{links.map(([label, href]) => <ExternalLink class="button secondary" href={href}>{label}</ExternalLink>)}</div>}

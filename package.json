@@ -12,6 +12,7 @@
     "check": "astro check",
     "build": "astro build",
     "preview": "astro preview",
+    "test:unit": "vitest run tests/unit",
     "test:smoke": "node --test tests/smoke/routes.test.mjs"
   },
   "dependencies": {
@@ -20,6 +21,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "0.9.9",
-    "typescript": "6.0.3"
+    "typescript": "6.0.3",
+    "vitest": "4.1.10"
   }
 }

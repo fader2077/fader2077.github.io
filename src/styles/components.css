@@ -11,3 +11,13 @@
 .button.secondary { background: transparent; border: 1px solid var(--border); }
 .section-header { margin-bottom: 2rem; }
 .eyebrow { font: 700 .8rem ui-monospace, monospace; letter-spacing: .12em; text-transform: uppercase; }
+.tag-list { display: flex; flex-wrap: wrap; gap: .5rem; padding: 0; list-style: none; }
+.tag-list li { padding: .2rem .55rem; border-radius: .4rem; background: rgb(129 140 248 / 10%); color: var(--muted); }
+.publication-list { display: grid; gap: 1rem; margin-top: 3rem; }
+.publication-item { padding: 1.5rem; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); }
+.project-detail { max-width: 58rem; }
+.project-meta { display: flex; gap: 2rem; margin-block: 2rem; }
+.project-meta dt { color: var(--muted); font-size: .8rem; text-transform: uppercase; }
+.project-meta dd { margin: 0; }
+.prose { margin-top: 3rem; }
+.prose h2 { margin-top: 2.5rem; }

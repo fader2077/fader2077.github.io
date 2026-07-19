@@ -1,6 +1,15 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/projects/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+import { isProjectPublic } from '../lib/content-status';
+import { sortProjects } from '../lib/sort-content';
+const projects = sortProjects((await getCollection('projects'))
+  .filter(({ data }) => isProjectPublic(data))
+  .map((entry) => ({ ...entry.data, entry })))
+  .map(({ entry }) => entry);
 ---
 <BaseLayout title="Projects | Jie-Xin Li" description="Applied AI and research engineering case studies." canonicalPath="/projects.html">
-  <header class="page-intro"><p class="eyebrow">Projects</p><h1>Projects</h1><p>Case studies will be generated from typed project content.</p></header>
+  <header class="page-intro"><p class="eyebrow">Projects</p><h1>Projects</h1><p>Evidence-aware case studies, including archived work.</p></header>
+  <section class="grid">{projects.map((project) => <ProjectCard project={project} />)}</section>
 </BaseLayout>

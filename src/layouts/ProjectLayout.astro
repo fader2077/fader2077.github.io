@@ -1,0 +1,16 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import ProjectEvidenceLinks from '../components/projects/ProjectEvidenceLinks.astro';
+interface Props { project: CollectionEntry<'projects'>; }
+const { project } = Astro.props;
+const { data } = project;
+---
+<BaseLayout title={`${data.title} | Jie-Xin Li`} description={data.summary} canonicalPath={`/projects/${data.slug}/`}>
+  <article class="project-detail">
+    <header class="page-intro"><p class="eyebrow">{data.category} · {data.status}</p><h1>{data.title}</h1><p>{data.summary}</p></header>
+    <dl class="project-meta"><div><dt>Role</dt><dd>{data.role}</dd></div>{data.period && <div><dt>Period</dt><dd>{data.period}</dd></div>}</dl>
+    <ProjectEvidenceLinks repositoryUrl={data.repositoryUrl} demoUrl={data.demoUrl} paperUrl={data.paperUrl} reportUrl={data.reportUrl} />
+    <div class="prose"><slot /></div>
+  </article>
+</BaseLayout>

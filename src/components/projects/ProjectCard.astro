@@ -1,0 +1,12 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Badge from '../shared/Badge.astro';
+interface Props { project: CollectionEntry<'projects'>; }
+const { project } = Astro.props;
+---
+<article class="card project-card">
+  <div class="button-row"><Badge label={project.data.category} /><Badge label={project.data.status} /></div>
+  <h2><a href={`/projects/${project.data.slug}/`}>{project.data.title}</a></h2>
+  <p>{project.data.summary}</p>
+  <ul class="tag-list">{project.data.technologies.map((technology) => <li>{technology}</li>)}</ul>
+</article>

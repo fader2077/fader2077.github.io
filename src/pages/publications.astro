@@ -1,6 +1,14 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PublicationItem from '../components/publications/PublicationItem.astro';
+import { getCollection } from 'astro:content';
+import { getPublicationStats } from '../lib/publication-stats';
+import { sortPublications } from '../lib/sort-content';
+const entries = await getCollection('publications');
+const publications = sortPublications(entries.map((entry) => ({ ...entry.data, entry }))).map(({ entry }) => entry);
+const stats = getPublicationStats(publications.map(({ data }) => data));
 ---
 <BaseLayout title="Publications | Jie-Xin Li" description="Verified academic publications and research outputs." canonicalPath="/publications.html">
-  <header class="page-intro"><p class="eyebrow">Research record</p><h1>Publications</h1><p>Publication records will be generated from one validated collection.</p></header>
+  <header class="page-intro"><p class="eyebrow">Research record</p><h1>Publications</h1><p><strong>{stats.formalResults}</strong> independently verified formal results. Other migrated records remain visibly marked for metadata verification.</p></header>
+  <section class="publication-list">{publications.map((publication) => <PublicationItem publication={publication} />)}</section>
 </BaseLayout>

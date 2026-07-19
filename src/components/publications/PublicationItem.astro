@@ -1,0 +1,18 @@
+---
+import type { CollectionEntry } from 'astro:content';
+interface Props { publication: CollectionEntry<'publications'>; }
+const { publication } = Astro.props;
+const { data } = publication;
+---
+<article class="publication-item" data-publication data-type={data.type} data-status={data.status}>
+  <p class="eyebrow">{data.year} · {data.type.replace('_', ' ')}</p>
+  <h2>{data.title}</h2>
+  <p>{data.authors.map((author) => author === data.highlightedAuthor ? <strong>{author}</strong> : author).reduce((all, author) => all.length ? [...all, ', ', author] : [author], [])}</p>
+  <p>{data.venue}</p>
+  <div class="button-row">
+    <span class="badge">{data.status.replace('_', ' ')}</span>
+    {!data.verified && <span class="badge">Metadata verification required</span>}
+    {data.doi && <a href={`https://doi.org/${data.doi}`} target="_blank" rel="noopener noreferrer">DOI</a>}
+    {data.url && <a href={data.url} target="_blank" rel="noopener noreferrer">Source</a>}
+  </div>
+</article>
