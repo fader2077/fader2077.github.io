@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Badge from '../components/shared/Badge.astro';
+---
+<BaseLayout title="Jie-Xin Li | Applied AI Systems" description="Portfolio focused on applied AI, trustworthy LLM systems, and deployable research." canonicalPath="/">
+  <section class="hero">
+    <Badge label="Applied AI Research" />
+    <h1>Applied AI &amp; Trustworthy LLM Systems</h1>
+    <p>專注於 Agentic GraphRAG、可信任 AI、AI Security 與可部署 AI 系統。</p>
+    <div class="button-row">
+      <a class="button" href="/projects.html">View Projects</a>
+      <a class="button secondary" href="/cv.html">Curriculum Vitae</a>
+    </div>
+  </section>
+  <section class="grid" aria-label="Portfolio focus">
+    <article class="card"><h2>Evidence first</h2><p>Claims stay linked to artifacts, reports, or explicit verification notes.</p></article>
+    <article class="card"><h2>Buildable research</h2><p>Research framed as systems, decisions, evaluations, limitations, and reusable artifacts.</p></article>
+  </section>
+</BaseLayout>

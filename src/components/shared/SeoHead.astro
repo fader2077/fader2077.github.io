@@ -1,0 +1,36 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  canonicalPath: string;
+  imagePath?: string;
+}
+
+const {
+  title,
+  description,
+  canonicalPath,
+  imagePath = '/og-preview.svg',
+} = Astro.props;
+const canonical = new URL(canonicalPath, Astro.site);
+const image = new URL(imagePath, Astro.site);
+---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content={description} />
+<meta name="generator" content={Astro.generator} />
+<link rel="canonical" href={canonical} />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<meta property="og:locale" content="zh_TW" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Jie-Xin Li" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={image} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={image} />
+<title>{title}</title>

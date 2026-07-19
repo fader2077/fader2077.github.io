@@ -1,0 +1,7 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import '../styles/print.css';
+interface Props { title: string; description: string; canonicalPath: string; }
+const props = Astro.props;
+---
+<BaseLayout {...props}><article class="cv-sheet"><slot /></article></BaseLayout>

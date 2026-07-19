@@ -1,0 +1,27 @@
+---
+import Footer from '../components/layout/Footer.astro';
+import Header from '../components/layout/Header.astro';
+import SeoHead from '../components/shared/SeoHead.astro';
+import '../styles/tokens.css';
+import '../styles/global.css';
+import '../styles/layout.css';
+import '../styles/components.css';
+import '../styles/utilities.css';
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalPath: string;
+}
+const props = Astro.props;
+---
+<!doctype html>
+<html lang="zh-TW">
+  <head><SeoHead {...props} /></head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <Header />
+    <main id="main-content"><slot /></main>
+    <Footer />
+  </body>
+</html>

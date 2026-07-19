@@ -1,0 +1,11 @@
+---
+interface Item { label: string; href: string; }
+interface Props { items: Item[]; }
+const { items } = Astro.props;
+---
+<details class="mobile-nav">
+  <summary aria-label="Open navigation">Menu</summary>
+  <nav aria-label="Mobile navigation">
+    {items.map((item) => <a href={item.href}>{item.label}</a>)}
+  </nav>
+</details>

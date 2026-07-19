@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://fader2077.github.io/sitemap-index.xml

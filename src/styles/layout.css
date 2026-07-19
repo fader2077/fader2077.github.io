@@ -1,0 +1,19 @@
+.site-header, .site-footer, main { width: min(calc(100% - 2rem), var(--max)); margin-inline: auto; }
+.site-header { display: flex; align-items: center; justify-content: space-between; padding-block: 1.25rem; }
+.desktop-nav { display: flex; gap: 1.5rem; }
+.desktop-nav a, .brand { color: var(--text); text-decoration: none; font-weight: 700; }
+.brand { font: 800 1.5rem ui-monospace, monospace; }
+.brand span, .eyebrow { color: var(--accent); }
+main { padding-block: clamp(3rem, 8vw, 7rem); }
+.hero, .page-intro { display: grid; gap: 1.5rem; max-width: 54rem; }
+.grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 1rem; margin-top: 3rem; }
+.card { grid-column: span 6; }
+.site-footer { border-top: 1px solid var(--border); padding-block: 2rem; display: flex; justify-content: space-between; gap: 1rem; }
+.mobile-nav { display: none; }
+@media (max-width: 48rem) {
+  .desktop-nav { display: none; }
+  .mobile-nav { display: block; position: relative; }
+  .mobile-nav nav { position: absolute; right: 0; display: grid; gap: .75rem; min-width: 12rem; padding: 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: .75rem; }
+  .card { grid-column: 1 / -1; }
+  .site-footer { display: block; }
+}

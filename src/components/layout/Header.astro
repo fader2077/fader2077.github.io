@@ -1,0 +1,17 @@
+---
+import MobileNavigation from './MobileNavigation.astro';
+
+const items = [
+  { label: 'Home', href: '/' },
+  { label: 'Projects', href: '/projects.html' },
+  { label: 'Publications', href: '/publications.html' },
+  { label: 'CV', href: '/cv.html' },
+];
+---
+<header class="site-header">
+  <a class="brand" href="/" aria-label="Jie-Xin Li home">JX<span>.</span></a>
+  <nav class="desktop-nav" aria-label="Primary navigation">
+    {items.map((item) => <a href={item.href}>{item.label}</a>)}
+  </nav>
+  <MobileNavigation items={items} />
+</header>
