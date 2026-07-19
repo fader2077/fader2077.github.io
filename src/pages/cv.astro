@@ -24,7 +24,7 @@ const verifiedPublications = publications.filter(({ data }) => data.verified).so
   <div class="cv-contact"><a href={`mailto:${profile.email}`}>{profile.email}</a><span>{profile.location}</span><a href={profile.githubUrl} target="_blank" rel="noopener noreferrer">GitHub</a></div>
   <section><h2>Education</h2>{education.map((item) => <article><h3>{item.degree} · {item.field}</h3><p>{item.school}{item.advisor ? ` · ${item.advisor}` : ''}</p></article>)}</section>
   <section><h2>Experience</h2>{experience.map((item) => <article><h3>{item.role}</h3><p><strong>{item.organization}</strong> · {item.summary}</p></article>)}</section>
-  <section><h2>Verified publications</h2><p><strong data-verified-publication-count>{stats.formalResults}</strong> independently verified formal results.</p>{verifiedPublications.map(({ data }) => <article><h3>{data.title}</h3><p>{data.year} · {data.venue}{data.doi ? <Fragment> · <a href={`https://doi.org/${data.doi}`}>DOI</a></Fragment> : null}</p></article>)}</section>
+  <section><h2>Verified publications</h2><p><strong data-verified-publication-count={String(stats.formalResults)}>{stats.formalResults}</strong> independently verified formal results.</p>{verifiedPublications.map(({ data }) => <article><h3>{data.title}</h3><p>{data.year} · {data.venue}{data.doi ? <Fragment> · <a href={`https://doi.org/${data.doi}`}>DOI</a></Fragment> : null}</p></article>)}</section>
   <section><h2>Capabilities</h2><div class="cv-skills">{skills.map((group) => <article><h3>{group.group}</h3><ul>{group.items.map((item) => <li>{item}</li>)}</ul></article>)}</div></section>
 </CvLayout>
 

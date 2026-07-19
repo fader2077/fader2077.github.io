@@ -11,7 +11,7 @@ const all = await getCollection('publications');
 const selected = sortPublications(all.filter(({ data }) => data.featured && data.verified).map((entry) => ({ ...entry.data, entry }))).slice(0, section.maxItems ?? 4).map(({ entry }) => entry);
 const stats = getPublicationStats(all.map(({ data }) => data));
 ---
-<section id={section.id} class="home-section" data-section-id={section.id}>
+<section id={section.id} class="home-section" data-section-id={section.id} data-verified-publication-count={stats.formalResults}>
   <SectionHeader eyebrow={`${stats.formalResults} verified formal results`} title={section.title ?? 'Selected Publications'} subtitle={section.subtitle} />
   <div class="publication-list">{selected.map((publication) => <PublicationItem publication={publication} />)}</div>
   {section.showMoreLink && <p><a href="/publications.html">View publication record →</a></p>}

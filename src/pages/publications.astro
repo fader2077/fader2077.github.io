@@ -18,25 +18,26 @@ const articleSchemas = publications.filter(({ data }) => data.verified).map(({ d
 }));
 ---
 <BaseLayout title="Publications | Jie-Xin Li" description="Verified academic publications and research outputs." canonicalPath="/publications.html" structuredData={articleSchemas}>
-  <header class="page-intro"><p class="eyebrow">Research record</p><h1>Publications</h1><p><strong>{stats.formalResults}</strong> independently verified formal results. Other migrated records remain visibly marked for metadata verification.</p></header>
-  <form class="filter-bar" data-publication-filters>
+  <header class="page-intro" data-verified-publication-count={stats.formalResults}><p class="eyebrow">Research record</p><h1>Publications</h1><p><strong>{stats.formalResults}</strong> independently verified formal results. Other migrated records remain visibly marked for metadata verification.</p></header>
+  <div class="filter-bar" role="group" aria-label="Publication filters" data-publication-filters>
     <label>Publication type<select name="type"><option value="all">All types</option><option value="journal">Journal</option><option value="conference">Conference</option><option value="workshop">Workshop</option><option value="poster">Poster</option></select></label>
     <label>Status<select name="status"><option value="all">All statuses</option><option value="published">Published</option><option value="accepted">Accepted</option><option value="in_press">In press</option><option value="under_revision">Under revision</option><option value="under_review">Under review</option><option value="submitted">Submitted</option></select></label>
-    <button type="reset">Reset filters</button>
+    <button type="button" data-reset-filters>Reset filters</button>
     <output aria-live="polite" data-filter-count>{publications.length} records</output>
-  </form>
+  </div>
   <section class="publication-list">{publications.map((publication) => <PublicationItem publication={publication} />)}</section>
 </BaseLayout>
 
 <script>
-  const form = document.querySelector<HTMLFormElement>('[data-publication-filters]');
+  const form = document.querySelector<HTMLElement>('[data-publication-filters]');
   const items = [...document.querySelectorAll<HTMLElement>('[data-publication]')];
   const output = form?.querySelector<HTMLOutputElement>('[data-filter-count]');
+  const typeSelect = form?.querySelector<HTMLSelectElement>('select[name="type"]');
+  const statusSelect = form?.querySelector<HTMLSelectElement>('select[name="status"]');
   const applyFilters = () => {
     if (!form) return;
-    const data = new FormData(form);
-    const type = String(data.get('type'));
-    const status = String(data.get('status'));
+    const type = typeSelect?.value ?? 'all';
+    const status = statusSelect?.value ?? 'all';
     let visible = 0;
     for (const item of items) {
       item.hidden = !((type === 'all' || item.dataset.type === type) && (status === 'all' || item.dataset.status === status));
@@ -45,5 +46,9 @@ const articleSchemas = publications.filter(({ data }) => data.verified).map(({ d
     if (output) output.value = `${visible} records`;
   };
   form?.addEventListener('change', applyFilters);
-  form?.addEventListener('reset', () => requestAnimationFrame(applyFilters));
+  form?.querySelector('[data-reset-filters]')?.addEventListener('click', () => {
+    if (typeSelect) typeSelect.value = 'all';
+    if (statusSelect) statusSelect.value = 'all';
+    applyFilters();
+  });
 </script>

@@ -16,12 +16,14 @@ const {
 } = Astro.props;
 const canonical = new URL(canonicalPath, Astro.site);
 const image = new URL(imagePath, Astro.site);
+const deploySha = import.meta.env.PUBLIC_DEPLOY_SHA || 'local';
 ---
 
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="description" content={description} />
 <meta name="generator" content={Astro.generator} />
+<meta name="deploy-sha" content={deploySha} />
 <link rel="canonical" href={canonical} />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <meta property="og:locale" content="zh_TW" />

@@ -14,7 +14,10 @@
     "preview": "astro preview",
     "test:unit": "vitest run tests/unit",
     "test:smoke": "node --test tests/smoke/routes.test.mjs",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "validate:site": "node scripts/validate-site.mjs",
+    "validate:html": "html-validate \"dist/**/*.html\"",
+    "validate": "npm run check && npm run test:unit && npm run build && npm run test:smoke && npm run validate:site && npm run validate:html && npm run test:e2e"
   },
   "dependencies": {
     "@astrojs/sitemap": "3.7.3",
@@ -29,6 +32,7 @@
     "@axe-core/playwright": "4.12.1",
     "@playwright/test": "1.61.1",
     "@types/sanitize-html": "2.16.1",
+    "html-validate": "11.5.6",
     "typescript": "6.0.3",
     "vitest": "4.1.10"
   }
